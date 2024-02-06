@@ -41,6 +41,9 @@ Check application by starting server:
 bin/dev
 ```
 
+visit [admin login panel page](http://localhost:3000/admin/login)
+and login with AdminUser from seeds
+
 ---
 
 This README would normally document whatever steps are necessary to get the
