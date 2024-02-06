@@ -11,6 +11,7 @@ rails new . -j esbuild --database postgresql --skip-test --css bootstrap
 Ruby version: `3.3.0`
 Rails version: `7.1.3`
 Database: `postgresql`
+Testing with: `rspec`
 
 Views are written in slim
 
