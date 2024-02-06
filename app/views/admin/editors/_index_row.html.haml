@@ -1,0 +1,17 @@
+%tr{ id: dom_id(editor) }
+  %td.icon_cell
+    = link_to admin_editor_path(editor), class: 'd-block', data: { turbo_frame: 'modal_main' } do
+      %i.bi.bi-file-text.h3
+  %td
+    = editor.id
+  %td
+    = editor.fullname
+  %td
+    = editor.email
+  %td
+    = editor.created_at
+  %td
+    = editor.updated_at
+  %td.icon_cell
+    = link_to edit_admin_editor_path(editor), class: 'd-block', data: { turbo_frame: "modal_main" } do
+      %i.bi.bi-pencil-square.h3
