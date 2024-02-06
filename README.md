@@ -13,17 +13,22 @@ Rails version: `7.1.3`
 Database: `postgresql`
 Testing with: `rspec`
 
-Views are written in slim
+Views are written in `slim`
+
+Javascript and Css bundled with `esbuild`
+Css with `bootstrap`
+
+Forms with `simple_form`
 
 ## Setup
 
-run:
+Run:
 
 ```bash
 bin/setup
 ```
 
-check application by starting server:
+Check application by starting server:
 
 ```bash
 bin/dev
