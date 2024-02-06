@@ -20,6 +20,8 @@ Css with `bootstrap`
 
 Forms with `simple_form`
 
+Linters: `rubocop`, `rubocop-rspec`, `slim_lint`
+
 ## Setup
 
 Run:
