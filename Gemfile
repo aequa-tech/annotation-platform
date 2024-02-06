@@ -19,6 +19,8 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
+gem "slim-rails"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -41,4 +43,5 @@ end
 
 group :development do
   gem "web-console"
+  gem 'slim_lint', require: false
 end
