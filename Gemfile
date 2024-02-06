@@ -7,7 +7,15 @@ gem "sprockets-rails"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 
+# A scaffold code generator for CRUD applications
+gem 'infold', require: false
+# Gems required by infold:
+gem 'active_decorator'
 gem 'devise'
+gem 'enum_help'
+gem 'haml-rails'
+gem 'kaminari'
+gem 'view_component'
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"

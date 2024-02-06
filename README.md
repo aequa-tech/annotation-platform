@@ -22,6 +22,11 @@ Forms with `simple_form`
 
 Linters: `rubocop`, `rubocop-rspec`, `slim_lint`
 
+## Administration panel
+
+Using `infold` gem to rapidly generate CRUD for admin resources.
+It is important to create model before generating the infold, to maximize automation.
+
 ## Setup
 
 Run:
