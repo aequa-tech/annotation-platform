@@ -1,0 +1,7 @@
+exclude_paths:
+  - 'vendor/**/*.rb'
+  - 'db/schema.rb'
+  - 'config/deploy.rb'
+  - 'config/deploy/*.rb'
+  - 'config/environments/*.rb'
+  - 'config/puma.rb'

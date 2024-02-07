@@ -50,6 +50,8 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+    active_decorator (1.4.1)
+      activesupport
     activejob (7.1.3)
       activesupport (= 7.1.3)
       globalid (>= 0.3.6)
@@ -75,12 +77,20 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    ast (2.4.2)
     base64 (0.2.0)
+    bcrypt (3.1.20)
     bigdecimal (3.1.6)
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
+    brakeman (6.1.2)
+      racc
     builder (3.2.4)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
+    childprocess (5.0.0)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -90,13 +100,36 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    devise (4.9.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+    diff-lcs (1.5.1)
     drb (2.2.0)
       ruby2_keywords
+    enum_help (0.0.19)
+      activesupport (>= 3.0.0)
     erubi (1.12.0)
+    fasterer (0.11.0)
+      ruby_parser (>= 3.19.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    haml (6.3.0)
+      temple (>= 0.8.2)
+      thor
+      tilt
+    haml-rails (2.1.0)
+      actionpack (>= 5.1)
+      activesupport (>= 5.1)
+      haml (>= 4.0.6)
+      railties (>= 5.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    infold (0.2.1)
+      rails (>= 7.0)
+    iniparse (1.5.0)
     io-console (0.7.2)
     irb (1.11.1)
       rdoc
@@ -106,6 +139,20 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.3.0)
       railties (>= 6.0.0)
+    json (2.7.1)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
+    language_server-protocol (3.17.0.3)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -115,6 +162,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
+    method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.22.0)
     msgpack (1.7.2)
@@ -141,6 +189,15 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
+    orm_adapter (0.5.0)
+    overcommit (0.62.0)
+      childprocess (>= 0.6.3, < 6)
+      iniparse (~> 1.4)
+      rexml (~> 3.2)
+    parallel (1.24.0)
+    parser (3.3.0.5)
+      ast (~> 2.4.1)
+      racc
     pg (1.5.4)
     psych (5.1.2)
       stringio
@@ -184,6 +241,7 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
+    rainbow (3.1.1)
     rake (13.1.0)
     rdoc (6.6.2)
       psych (>= 4.0.0)
@@ -191,9 +249,70 @@ GEM
       redis-client (>= 0.17.0)
     redis-client (0.19.1)
       connection_pool
+    regexp_parser (2.9.0)
     reline (0.4.2)
       io-console (~> 0.5)
+    responders (3.1.1)
+      actionpack (>= 5.2)
+      railties (>= 5.2)
+    rexml (3.2.6)
+    rspec-core (3.13.0)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (6.1.1)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.13.0)
+    rubocop (1.60.2)
+      json (~> 2.3)
+      language_server-protocol (>= 3.17.0)
+      parallel (~> 1.10)
+      parser (>= 3.3.0.2)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml (>= 3.2.5, < 4.0)
+      rubocop-ast (>= 1.30.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 2.4.0, < 3.0)
+    rubocop-ast (1.30.0)
+      parser (>= 3.2.1.0)
+    rubocop-capybara (2.20.0)
+      rubocop (~> 1.41)
+    rubocop-factory_bot (2.25.1)
+      rubocop (~> 1.41)
+    rubocop-rspec (2.26.1)
+      rubocop (~> 1.40)
+      rubocop-capybara (~> 2.17)
+      rubocop-factory_bot (~> 2.22)
+    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    ruby_parser (3.21.0)
+      racc (~> 1.5)
+      sexp_processor (~> 4.16)
+    sexp_processor (4.17.1)
+    simple_form (5.3.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
+    slim (5.2.1)
+      temple (~> 0.10.0)
+      tilt (>= 2.1.0)
+    slim-rails (3.6.3)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (>= 3.0, < 6.0, != 5.0.0)
+    slim_lint (0.26.0)
+      rubocop (>= 1.0, < 2.0)
+      slim (>= 3.0, < 6.0)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -204,7 +323,9 @@ GEM
     stimulus-rails (1.3.3)
       railties (>= 6.0.0)
     stringio (3.1.0)
+    temple (0.10.3)
     thor (1.3.0)
+    tilt (2.3.0)
     timeout (0.4.1)
     turbo-rails (1.5.0)
       actionpack (>= 6.0.0)
@@ -212,6 +333,13 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.5.0)
+    view_component (3.10.0)
+      activesupport (>= 5.2.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -232,19 +360,36 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  active_decorator
   bootsnap
+  brakeman
+  bundler-audit
   cssbundling-rails
   debug
+  devise
+  enum_help
+  fasterer
+  haml-rails
+  infold
   jbuilder
   jsbundling-rails
+  kaminari
+  overcommit
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3)
   redis (>= 4.0.1)
+  rspec-rails (~> 6.1.0)
+  rubocop
+  rubocop-rspec
+  simple_form
+  slim-rails
+  slim_lint
   sprockets-rails
   stimulus-rails
   turbo-rails
   tzinfo-data
+  view_component
   web-console
 
 RUBY VERSION

@@ -1,0 +1,79 @@
+env:
+  RAILS_ENV: test
+  POSTGRES_PASSWORD: password
+
+name: Pipeline for pull requests
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  linters:
+    if: github.event.pull_request.draft == false
+    name: Execute linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify what's installed on project
+        uses: ./.github/actions/check_linters
+
+      - name: Install dependencies
+        uses: ./.github/actions/build
+
+      - name: Run Bundler Audit
+        run: ./bin/bundle exec bundle-audit check --update
+        shell: bash
+        if: ${{ ! cancelled() && env.b_audit_present == 'true' }}
+
+      - name: Run rubocop
+        run: ./bin/bundle exec rubocop
+        shell: bash
+        if: ${{ ! cancelled() && env.rubocop_present == 'true' }}
+
+      - name: Run brakeman
+        run: ./bin/bundle exec brakeman --quiet
+        shell: bash
+        if: ${{ ! cancelled() && env.brakeman_present == 'true' }}
+
+      - name: Run slim-lint
+        run: ./bin/bundle exec slim-lint app/views/
+        shell: bash
+        if: ${{ ! cancelled() && env.slimlint_present == 'true' }}
+
+      - name: Run fasterer
+        run: bundle exec fasterer
+        shell: bash
+        if: ${{ ! cancelled() && env.fasterer_present == 'true' }}
+
+  specs:
+    if: github.event.pull_request.draft == false
+    name: Run Specs
+    needs: linters
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+        ports:
+          ['5432:5432']
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify what's installed on project
+        uses: ./.github/actions/check_linters
+
+      - name: Install dependencies
+        uses: ./.github/actions/build
+
+      - name: Run specs
+        run: bin/rails db:setup && bin/rake
+        shell: bash
+        env:
+          DATABASE_URL: postgres://postgres:${{ env.POSTGRES_PASSWORD }}@localhost:5432/postgres
