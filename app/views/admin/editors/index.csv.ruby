@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 CSV.generate do |csv|
   # set title row
@@ -7,7 +7,7 @@ CSV.generate do |csv|
     Admin::Editor.human_attribute_name(:fullname),
     Admin::Editor.human_attribute_name(:created_at),
     Admin::Editor.human_attribute_name(:updated_at),
-    Admin::Editor.human_attribute_name(:email),
+    Admin::Editor.human_attribute_name(:email)
   ]
   # set body rows
   @editors.each do |editor|
@@ -16,7 +16,7 @@ CSV.generate do |csv|
       editor.fullname,
       editor.created_at,
       editor.updated_at,
-      editor.email,
+      editor.email
     ]
   end
 end

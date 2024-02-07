@@ -1,6 +1,6 @@
 module Admin
   class EditorsController < BaseController
-    before_action { @page_title = 'EDITORS' }
+    before_action { @page_title = "EDITORS" }
 
     def index
       @search = EditorSearchForm.new(search_params)
@@ -19,10 +19,10 @@ module Admin
       @editor = Editor.new
       @editor.assign_attributes(post_params)
       if @editor.save
-        flash.now[:notice] = t('infold.flash.created')
+        flash.now[:notice] = t("infold.flash.created")
         render :form
       else
-        flash.now[:alert] = t('infold.flash.invalid')
+        flash.now[:alert] = t("infold.flash.invalid")
         render :form, status: :unprocessable_entity
       end
     end
@@ -35,10 +35,10 @@ module Admin
       @editor = Editor.find(params[:id])
       @editor.assign_attributes(post_params)
       if @editor.save
-        flash.now[:notice] = t('infold.flash.updated')
+        flash.now[:notice] = t("infold.flash.updated")
         render :form
       else
-        flash.now[:alert] = t('infold.flash.invalid')
+        flash.now[:alert] = t("infold.flash.invalid")
         render :form, status: :unprocessable_entity
       end
     end
@@ -46,9 +46,9 @@ module Admin
     def destroy
       @editor = Editor.find(params[:id])
       if @editor.destroy
-        redirect_to admin_editors_path, status: :see_other, flash: { notice: t('infold.flash.destroyed') }
+        redirect_to admin_editors_path, status: :see_other, flash: { notice: t("infold.flash.destroyed") }
       else
-        flash.now[:alert] = t('flash.invalid_destroy')
+        flash.now[:alert] = t("flash.invalid_destroy")
         render :show, status: :unprocessable_entity
       end
     end
