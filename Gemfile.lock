@@ -84,7 +84,13 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
+    brakeman (6.1.2)
+      racc
     builder (3.2.4)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
+    childprocess (5.0.0)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -106,6 +112,8 @@ GEM
     enum_help (0.0.19)
       activesupport (>= 3.0.0)
     erubi (1.12.0)
+    fasterer (0.11.0)
+      ruby_parser (>= 3.19.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     haml (6.3.0)
@@ -121,6 +129,7 @@ GEM
       concurrent-ruby (~> 1.0)
     infold (0.2.1)
       rails (>= 7.0)
+    iniparse (1.5.0)
     io-console (0.7.2)
     irb (1.11.1)
       rdoc
@@ -181,6 +190,10 @@ GEM
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    overcommit (0.62.0)
+      childprocess (>= 0.6.3, < 6)
+      iniparse (~> 1.4)
+      rexml (~> 3.2)
     parallel (1.24.0)
     parser (3.3.0.5)
       ast (~> 2.4.1)
@@ -283,6 +296,10 @@ GEM
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    ruby_parser (3.21.0)
+      racc (~> 1.5)
+      sexp_processor (~> 4.16)
+    sexp_processor (4.17.1)
     simple_form (5.3.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
@@ -345,15 +362,19 @@ PLATFORMS
 DEPENDENCIES
   active_decorator
   bootsnap
+  brakeman
+  bundler-audit
   cssbundling-rails
   debug
   devise
   enum_help
+  fasterer
   haml-rails
   infold
   jbuilder
   jsbundling-rails
   kaminari
+  overcommit
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3)
