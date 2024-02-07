@@ -3,7 +3,7 @@ module Admin
     class Forbidden < ActionController::ActionControllerError; end
     include ErrorHandlers
 
-    layout 'admin'
+    layout "admin"
 
     before_action :turbo_frame_request_variant
     before_action :authenticate_admin_user!

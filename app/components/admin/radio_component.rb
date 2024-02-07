@@ -11,12 +11,12 @@ module Admin
     end
 
     def radio_button(key)
-      classes = %W(form-check-input #{@class})
-      classes << 'is-invalid' if helpers.admin_field_invalid?(@form, @field)
+      classes = %W[form-check-input #{@class}]
+      classes << "is-invalid" if helpers.admin_field_invalid?(@form, @field)
       @form.radio_button(@field,
-                         key,
-                         class: classes.join(' '),
-                         checked: key == (@checked_value || @form.object.send(@field)).to_s)
+        key,
+        class: classes.join(" "),
+        checked: key == (@checked_value || @form.object.send(@field)).to_s)
     end
   end
 end

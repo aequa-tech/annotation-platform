@@ -6,7 +6,5 @@ module Admin
     scope :email_eq, ->(v) do
       where(email: v) if v.present?
     end
-
-
   end
 end

@@ -6,7 +6,7 @@ module Admin
       @form = form
       @field = field
       @label = label
-      @required = required ? 'required' : nil
+      @required = required ? "required" : nil
     end
 
     def call

@@ -3,3 +3,5 @@ exclude_paths:
   - 'db/schema.rb'
   - 'config/deploy.rb'
   - 'config/deploy/*.rb'
+  - 'config/environments/*.rb'
+  - 'config/puma.rb'

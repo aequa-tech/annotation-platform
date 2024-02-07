@@ -2,7 +2,7 @@
 
 module Admin
   class AdminUsers::SessionsController < Devise::SessionsController
-    layout 'admin'
+    layout "admin"
 
     # before_action :configure_sign_in_params, only: [:create]
 

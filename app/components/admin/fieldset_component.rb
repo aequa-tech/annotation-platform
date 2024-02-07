@@ -2,7 +2,7 @@
 
 module Admin
   class FieldsetComponent < ViewComponent::Base
-    def initialize(form, field=nil, kind=nil, required: false, label: nil, no_label: false, alignment: true, append: nil, prepend: nil, **options)
+    def initialize(form, field = nil, kind = nil, required: false, label: nil, no_label: false, alignment: true, append: nil, prepend: nil, **options)
       @form = form
       @field = field
       @kind = kind
@@ -27,42 +27,42 @@ module Admin
       case @kind
       when :checkbox
         Admin::CheckboxComponent.new(@form,
-                                     @field,
-                                     @options[:list],
-                                     checked_values: @options[:checked_values])
+          @field,
+          @options[:list],
+          checked_values: @options[:checked_values])
       when :datetime
         Admin::DatetimeComponent.new(@form, @field)
       when :file
         Admin::FileUploadComponent.new(@form, @field)
       when :radio
         Admin::RadioComponent.new(@form,
-                                  @field,
-                                  @options[:list],
-                                  checked_value: @options[:checked_value])
+          @field,
+          @options[:list],
+          checked_value: @options[:checked_value])
       when :select
         Admin::SelectComponent.new(@form,
-                                   @field,
-                                   @options[:list],
-                                   selected_value: @options[:selected_value],
-                                   blank: @options[:blank] || true)
+          @field,
+          @options[:list],
+          selected_value: @options[:selected_value],
+          blank: @options[:blank] || true)
       when :switch
         Admin::SwitchComponent.new(@form,
-                                   @field,
-                                   include_hidden: @options[:include_hidden])
+          @field,
+          include_hidden: @options[:include_hidden])
       when :association_search
         Admin::AssociationFieldComponent.new(@options[:association_name],
-                                             @options[:search_path],
-                                             @form,
-                                             @field,
-                                             @options[:name_field],
-                                             nested_form: @options[:nested_form])
+          @options[:search_path],
+          @form,
+          @field,
+          @options[:name_field],
+          nested_form: @options[:nested_form])
       else
-        kind = @kind == :text_area ? :text_area : "#{@kind}_field"
+        kind = (@kind == :text_area) ? :text_area : "#{@kind}_field"
         Admin::TextComponent.new(@form,
-                                 @field,
-                                 form_kind: kind,
-                                 placeholder: @options[:placeholder],
-                                 datepicker: @options[:datepicker])
+          @field,
+          form_kind: kind,
+          placeholder: @options[:placeholder],
+          datepicker: @options[:datepicker])
       end
     end
 

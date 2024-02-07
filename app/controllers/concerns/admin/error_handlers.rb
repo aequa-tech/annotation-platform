@@ -14,17 +14,17 @@ module Admin
 
     def rescue400(e)
       @exception = e
-      render '/admin/errors/bad_request', status: 400
+      render "/admin/errors/bad_request", status: 400
     end
 
     def rescue403(e)
       @exception = e
-      render '/admin/errors/forbidden', status: 403
+      render "/admin/errors/forbidden", status: 403
     end
 
     def rescue404(e)
       @exception = e
-      render '/admin/errors/not_found', status: 404
+      render "/admin/errors/not_found", status: 404
     end
 
     def rescue500(e)
@@ -32,7 +32,7 @@ module Admin
       logger.fatal e.message
       logger.fatal e.backtrace.join("\n")
       if Rails.env.production?
-        render '/admin/errors/admin_server_error', status: 500
+        render "/admin/errors/admin_server_error", status: 500
       else
         raise e
       end

@@ -1,12 +1,10 @@
-require 'csv'
+require "csv"
 
 CSV.generate do |csv|
   # set title row
-  csv << [
-  ]
+  csv << []
   # set body rows
   @admin_users.each do |admin_user|
-    csv << [
-    ]
+    csv << []
   end
 end

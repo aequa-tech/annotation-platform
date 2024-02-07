@@ -1,6 +1,5 @@
 module Admin
   class AdminUserSearchForm < BaseSearchForm
-
     set_condition :email_eq
 
     def perform(page = nil, limit: nil, csv: false)

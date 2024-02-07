@@ -10,9 +10,9 @@ module Admin
 
     def dataset
       {
-        action: 'index-page#sortChange',
+        action: "index-page#sortChange",
         sort_field: @field,
-        sort_kind: current_field? && sort_kind == 'desc' ? 'asc' : 'desc'
+        sort_kind: (current_field? && sort_kind == "desc") ? "asc" : "desc"
       }
     end
 
@@ -29,7 +29,7 @@ module Admin
     end
 
     def sort_status_icon
-      "<i class=\"ms-1 bi bi-chevron-#{sort_kind == 'desc' ? 'down' : 'up'}\"></i>".html_safe if current_field?
+      "<i class=\"ms-1 bi bi-chevron-#{(sort_kind == "desc") ? "down" : "up"}\"></i>".html_safe if current_field?
     end
   end
 end

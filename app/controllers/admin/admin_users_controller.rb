@@ -1,6 +1,6 @@
 module Admin
   class AdminUsersController < BaseController
-    before_action { @page_title = 'AdminUser' }
+    before_action { @page_title = "AdminUser" }
 
     def index
       @search = AdminUserSearchForm.new(search_params)
@@ -19,10 +19,10 @@ module Admin
       @admin_user = AdminUser.new
       @admin_user.assign_attributes(post_params)
       if @admin_user.save
-        flash.now[:notice] = t('infold.flash.created')
+        flash.now[:notice] = t("infold.flash.created")
         render :form
       else
-        flash.now[:alert] = t('infold.flash.invalid')
+        flash.now[:alert] = t("infold.flash.invalid")
         render :form, status: :unprocessable_entity
       end
     end
@@ -35,10 +35,10 @@ module Admin
       @admin_user = AdminUser.find(params[:id])
       @admin_user.assign_attributes(post_params)
       if @admin_user.save
-        flash.now[:notice] = t('infold.flash.updated')
+        flash.now[:notice] = t("infold.flash.updated")
         render :form
       else
-        flash.now[:alert] = t('infold.flash.invalid')
+        flash.now[:alert] = t("infold.flash.invalid")
         render :form, status: :unprocessable_entity
       end
     end
@@ -46,9 +46,9 @@ module Admin
     def destroy
       @admin_user = AdminUser.find(params[:id])
       if @admin_user.destroy
-        redirect_to admin_admin_users_path, status: :see_other, flash: { notice: t('infold.flash.destroyed') }
+        redirect_to admin_admin_users_path, status: :see_other, flash: { notice: t("infold.flash.destroyed") }
       else
-        flash.now[:alert] = t('flash.invalid_destroy')
+        flash.now[:alert] = t("flash.invalid_destroy")
         render :show, status: :unprocessable_entity
       end
     end
