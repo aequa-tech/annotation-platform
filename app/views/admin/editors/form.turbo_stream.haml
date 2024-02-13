@@ -1,0 +1,16 @@
+- if @editor.invalid?
+  = turbo_stream.update "form_body" do
+    = fields_for @editor do |form|
+      = render "form", form: form
+- else
+  = turbo_stream.update "modal_main" do
+    = render Admin::RemoteModalComponent.new do |modal|
+      = render 'show_wrapper', modal: modal, editor: @editor
+  - if action_name == "create"
+    = turbo_stream.prepend "editors" do
+      = render 'index_row', editor: @editor
+    = turbo_stream.remove "no_data"
+  - else
+    = turbo_stream.replace @editor do
+      = render 'index_row', editor: @editor
+= admin_turbo_stream_flash

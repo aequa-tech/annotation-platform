@@ -1,0 +1,31 @@
+.list-group.mb-3
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold= editor.class.human_attribute_name(:id)
+      .col-md-9
+        = editor.id
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold= editor.class.human_attribute_name(:fullname)
+      .col-md-9
+        = editor.fullname
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold= editor.class.human_attribute_name(:created_at)
+      .col-md-9
+        = editor.created_at
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold= editor.class.human_attribute_name(:updated_at)
+      .col-md-9
+        = editor.updated_at
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold= editor.class.human_attribute_name(:email)
+      .col-md-9
+        = editor.email
