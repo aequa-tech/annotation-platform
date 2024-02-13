@@ -1,0 +1,35 @@
+model:
+  validate:
+    editor_id: presence
+    fullname: presence
+    email:
+      - presence
+      - format:
+          with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  association:
+    editor:
+      kind: belongs_to
+      name_field: fullname
+app:
+  title: ANNOTATORS
+  index:
+    conditions:
+      - id:
+          sign: eq
+      - editor_id:
+          sign: eq
+          form_kind: association_search
+      - fullname:
+          form_kind: text
+          sign: full_like
+      - email:
+          form_kind: text
+          sign: full_like
+  form:
+    fields:
+      - fullname:
+          kind: text
+      - email:
+          kind: text
+      - editor:
+          kind: association_search

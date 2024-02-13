@@ -1,0 +1,16 @@
+- if @annotator.invalid?
+  = turbo_stream.update "form_body" do
+    = fields_for @annotator do |form|
+      = render "form", form: form
+- else
+  = turbo_stream.update "modal_main" do
+    = render Admin::RemoteModalComponent.new do |modal|
+      = render 'show_wrapper', modal: modal, annotator: @annotator
+  - if action_name == "create"
+    = turbo_stream.prepend "annotators" do
+      = render 'index_row', annotator: @annotator
+    = turbo_stream.remove "no_data"
+  - else
+    = turbo_stream.replace @annotator do
+      = render 'index_row', annotator: @annotator
+= admin_turbo_stream_flash

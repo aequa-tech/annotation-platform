@@ -4,11 +4,11 @@
     = modal.with_body do
       .modal-body
         .mb-3
-          = form_with model: Admin::CustomerSearchForm.new, url: admin_admin_users_path, method: :get,
+          = form_with model: Admin::EditorSearchForm.new, url: admin_admin_users_path, method: :get,
             scope: 'search', data: { turbo_frame: 'association_search_body' } do |form|
             .row.gy-3.align-items-end
               .col-lg-6.col-xl-4
-                = render Admin::FieldsetComponent.new(form, :id_eq, :text, alignment: false, 
+                = render Admin::FieldsetComponent.new(form, :id_eq, :text, alignment: false,
                   label: Admin::AdminUser.human_attribute_name(:id), placeholder: '=')
               .col-lg-6.col-xl-4
                 = hidden_field_tag :name_field, params[:name_field]
