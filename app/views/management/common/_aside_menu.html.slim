@@ -1,0 +1,30 @@
+aside.navbar.navbar-vertical.navbar-expand-sm.navbar-dark.bg-dark
+  .container-fluid
+    button.navbar-toggler data-bs-target="#navbar-menu", data-bs-toggle="collapse", type="button"
+      span.navbar-toggler-icon
+
+    h1.navbar-brand.navbar-brand-autodark
+      a{ href="/management" } Management
+
+    #sidebar-menu.collapse.navbar-collapse
+      ul.navbar-nav.pt-lg-3
+        li.nav-item
+
+        li.nav-item
+          = link_to management_annotators_path, class: "nav-link text-white" do
+            span.nav-link-title ANNOTATORS
+
+      hr.text-white
+
+      .dropdown
+        li.nav-item.dropdown
+          = link_to "", class: "nav-item dropdown-toggle text-white align-items-center",
+                        id: "header_current_user", \
+                        role: "button", data: { bs_toggle: "dropdown" } do
+            strong = current_editor.email
+
+          ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow{ aria-labelledby="header_current_user" }
+            li = link_to "Edit account", edit_editor_registration_path, class: "dropdown-item text-white"
+            li.dropdown-divider
+            li = button_to "Logout", destroy_editor_session_path, class: "dropdown-item text-white", method: :delete
+          .dropdown-divider
