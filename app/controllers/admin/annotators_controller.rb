@@ -16,9 +16,8 @@ module Admin
     end
 
     def create
-      @annotator = Annotator.new
-      @annotator.assign_attributes(post_params)
-      if @annotator.save
+      @annotator = Annotator.create(post_params)
+      if @annotator.persisted?
         flash.now[:notice] = t("infold.flash.created")
         render :form
       else
@@ -33,8 +32,7 @@ module Admin
 
     def update
       @annotator = Annotator.find(params[:id])
-      @annotator.assign_attributes(post_params)
-      if @annotator.save
+      if @annotator.update(post_params)
         flash.now[:notice] = t("infold.flash.updated")
         render :form
       else
