@@ -11,7 +11,7 @@ module Management
     end
 
     def permitted_params
-      params.require(:management_corpus).permit(:title, :input_file, :remove_input_file)
+      params.require(:management_corpus).permit(:title, :input_file, :remove_input_file, taxonomy_ids: [])
     end
 
     def search_params

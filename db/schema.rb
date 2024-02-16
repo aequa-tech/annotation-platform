@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_16_143341) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_16_153844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,6 +72,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_16_143341) do
     t.index ["editor_id"], name: "index_corpora_on_editor_id"
   end
 
+  create_table "corpora_taxonomies", force: :cascade do |t|
+    t.bigint "corpus_id", null: false
+    t.bigint "taxonomy_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["corpus_id", "taxonomy_id"], name: "index_corpora_taxonomies_on_corpus_id_and_taxonomy_id", unique: true
+    t.index ["corpus_id"], name: "index_corpora_taxonomies_on_corpus_id"
+    t.index ["taxonomy_id"], name: "index_corpora_taxonomies_on_taxonomy_id"
+  end
+
   create_table "editors", force: :cascade do |t|
     t.string "fullname"
     t.string "email", default: "", null: false
@@ -98,5 +108,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_16_143341) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "annotators", "editors"
   add_foreign_key "corpora", "editors"
+  add_foreign_key "corpora_taxonomies", "corpora"
+  add_foreign_key "corpora_taxonomies", "taxonomies"
   add_foreign_key "taxonomies", "editors"
 end
