@@ -1,0 +1,16 @@
+- if @resource.invalid?
+  = turbo_stream.update "form_body" do
+    = fields_for @resource do |form|
+      = render "form", form: form
+- else
+  = turbo_stream.update "modal_main" do
+    = render Admin::RemoteModalComponent.new do |modal|
+      = render "shared/show_wrapper", modal: modal, resource: @resource
+  - if action_name == "create"
+    = turbo_stream.append @resource.class.base_class.name.underscore.pluralize do
+      = render "index_row", resource: @resource
+    = turbo_stream.remove "no_data"
+  - else
+    = turbo_stream.replace @resource do
+      = render "index_row", resource: @resource
+= admin_turbo_stream_flash

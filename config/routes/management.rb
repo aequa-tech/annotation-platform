@@ -17,4 +17,5 @@ namespace "management" do
     root to: "editors/sessions#new", as: :unauthenticated_root
   end
   resources :annotators
+  resources :taxonomies
 end

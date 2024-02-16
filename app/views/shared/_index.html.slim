@@ -1,0 +1,34 @@
+nav.navbar.navbar-light
+  .container-fluid
+    ol.breadcrumb
+      li.breadcrumb-item.active = klass_name.to_s.pluralize
+    .ms-auto
+      = link_to t("infold.operation.new"), [:new, klass_module, klass_name],
+        class: "btn btn-warning", data: { turbo_frame: "modal_main" }
+
+#index_page.d-md-flex data-controller="index-page" data-index-page-target="wrapper"
+  #conditions.bg-white.container-fluid.border-end.pe-3.py-3
+    = yield :search_form
+
+  #result.flex-fill.container-fluid.ps-3.py-3 data-index-page-target="resultArea"
+    - if @resources.blank?
+      .alert#no_data = t("infold.no_data")
+    .card.border-top-0
+      .table_wrapper.table-responsive.bg-secondary-lt data-index-page-target="resultTableWrapper"
+        table.table.table-hover.table-striped.mb-0.bg-white
+          thead data-index-page-target="thead"
+            tr
+              th.icon_cell
+              = yield :results_table_columns
+              th.icon_cell
+          tbody id="#{klass_name.to_s.pluralize}"
+            = render partial: "index_row", collection: @resources, as: "resource"
+
+      - if @resources.present?
+        .card-body.d-md-flex.align-items-center.justify-content-between
+          .mb-3.mb-md-0
+            = admin_search_result_count(@resources)
+          .mb-3.mb-md-0
+            = paginate(@resources, views_prefix: "management")
+          = link_to t("infold.operation.output_csv"), "#",
+            class: "btn btn-info", data: { action: "index-page#outputCsv" }
