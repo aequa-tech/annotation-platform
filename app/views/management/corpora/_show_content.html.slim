@@ -1,0 +1,38 @@
+.list-group.mb-3
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:id)
+      .col-md-9
+        = resource.id
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:title)
+      .col-md-9
+        = resource.title
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:created_at)
+      .col-md-9
+        = resource.created_at
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:updated_at)
+      .col-md-9
+        = resource.updated_at
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:editor_id)
+      .col-md-9
+        = resource.editor_id
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:input_file)
+      .col-md-9
+        - if resource.input_file.attached?
+          = link_to resource.input_file.filename, rails_blob_url(resource.input_file), target: "_blank"

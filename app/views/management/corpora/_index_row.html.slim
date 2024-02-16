@@ -1,0 +1,15 @@
+tr id= dom_id(resource)
+  td.icon_cell
+    = link_to management_taxonomy_path(resource), class: "d-block", data: { turbo_frame: "modal_main" } do
+      i.bi.bi-file-text.h3
+  td
+    = resource.id
+  td
+    = resource.title
+  td
+    = resource.editor_id
+  td
+    = resource.created_at
+  td.icon_cell
+    = link_to edit_management_corpus_path(resource), class: "d-block", data: { turbo_frame: "modal_main" } do
+      i.bi.bi-pencil-square.h3

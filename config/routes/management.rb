@@ -18,4 +18,5 @@ namespace "management" do
   end
   resources :annotators
   resources :taxonomies
+  resources :corpora
 end
