@@ -1,37 +1,32 @@
 = turbo_frame_tag(admin_remote_modal_id) do
   = render Admin::RemoteModalComponent.new("modal_sub") do |modal|
-    = modal.with_header { "TAXONOMIES" }
+    = modal.with_header { "CORPORA" }
     = modal.with_body do
       .modal-body
         .mb-3
-          = form_with model: Management::TaxonomySearchForm.new, url: [:management, :taxonomies], method: :get,
+          = form_with model: Management::CorpusSearchForm.new, url: [:management, :corpora], method: :get,
             scope: "search", data: { turbo_frame: "association_search_body" } do |form|
             .row.gy-3.align-items-end
               .col-lg-6.col-xl-4
                 = render Admin::FieldsetComponent.new(form, :id_eq, :text, alignment: false,
-                  label: Management::Taxonomy.human_attribute_name(:id), placeholder: "=")
+                  label: Management::Corpus.human_attribute_name(:id), placeholder: "=")
               .col-lg-6.col-xl-4
                 = render Admin::FieldsetComponent.new(form, :title_full_like, :text, alignment: false,
-                  label: Management::Taxonomy.human_attribute_name(:title), placeholder: "like %...%")
-              .col-lg-6.col-xl-4
-                = render Admin::FieldsetComponent.new(form, :description_full_like, :text, alignment: false,
-                  label: Management::Taxonomy.human_attribute_name(:description), placeholder: "like %...%")
+                  label: Management::Corpus.human_attribute_name(:title), placeholder: "like %...%")
               .col-lg-6.col-xl-4
                 = hidden_field_tag :name_field, params[:name_field]
                 = form.submit t("infold.operation.search"), class: "btn btn-primary"
 
         = turbo_frame_tag "association_search_body" do
-          - if @resources.blank?
+          - if @corpora.blank?
             .alert = t("infold.no_data")
           - else
             .table_wrapper.table-responsive.bg-white.border.mb-3
               table.table.table-striped.table-hover
                 thead
                   tr
-                  th = Management::Taxonomy.human_attribute_name(:id)
-                  th = Management::Taxonomy.human_attribute_name(:title)
-                  th = Management::Taxonomy.human_attribute_name(:description)
-                  th = Management::Taxonomy.human_attribute_name(:created_at)
+                    th = Management::Corpus.human_attribute_name(:id)
+                    th = Management::Corpus.human_attribute_name(:title)
                     th
                 tbody
                   - @resources.each do |resource|
@@ -40,13 +35,9 @@
                         = resource.id
                       td
                         = resource.title
-                      td
-                        = resource.description
-                      td
-                        = l(resource.created_at, format: :day_month_abbr)
                       td.icon_cell
                         = link_to "#", id: resource.id,
                           data: { action: "relation-search#select remote-modal#close" },
                           name: resource.read_attribute(params[:name_field]) do
                           i.bi.bi-check2-square.h3
-            = paginate(@resources, views_prefix: "management")
+            = paginate(@resources, views_prefix: "admin")

@@ -28,4 +28,9 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  layout:
+    management:
+      title: Management
+  time:
+    formats:
+      day_month_abbr: "%a, %d %b %Y"
