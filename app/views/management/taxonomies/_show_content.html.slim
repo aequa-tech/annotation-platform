@@ -1,0 +1,31 @@
+.list-group.mb-3
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:id)
+      .col-md-9
+        = resource.id
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:title)
+      .col-md-9
+        = resource.title
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:description)
+      .col-md-9
+        = resource.description
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:created_at)
+      .col-md-9
+        = resource.created_at
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:updated_at)
+      .col-md-9
+        = resource.updated_at

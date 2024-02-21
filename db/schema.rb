@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_13_153658) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_15_152919) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,5 +48,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_153658) do
     t.index ["email"], name: "index_editors_on_email", unique: true
   end
 
+  create_table "taxonomies", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.bigint "editor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["editor_id"], name: "index_taxonomies_on_editor_id"
+    t.index ["title", "editor_id"], name: "index_taxonomies_on_title_and_editor_id", unique: true
+  end
+
   add_foreign_key "annotators", "editors"
+  add_foreign_key "taxonomies", "editors"
 end
