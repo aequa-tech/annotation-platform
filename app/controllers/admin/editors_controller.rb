@@ -68,7 +68,8 @@ module Admin
     def post_params
       params.require(:admin_editor).permit(
         :fullname,
-        :email
+        :email,
+        :password
       )
     end
   end

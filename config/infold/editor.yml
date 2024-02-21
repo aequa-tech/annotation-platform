@@ -6,6 +6,7 @@ model:
       - presence
       - format:
           with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    password: presence
 #  # Define Enum here
 #  enum:
 #    status:
@@ -75,19 +76,14 @@ app:
 #            - product
 #            - amount
 #  # form view settings
-#  form:
-#    fields:
-#      - status:
-#          kind: radio
-#      - customer:
-#          kind: association_search
-#      #Bulk registration of has_many
-#      - order_details:
-#          kind: association
-#          fields:
-#            - product
-#                kind: association_search
-#            - amount
+  form:
+    fields:
+      - fullname:
+          kind: text
+      - email:
+          kind: email
+      - password:
+          kind: password
 #  # Child screen search for related models
 #  association_search:
 #    conditions:
