@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   draw(:admin)
   draw(:management)
+  draw(:frontend)
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
