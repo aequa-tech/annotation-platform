@@ -17,4 +17,6 @@ namespace "admin" do
   devise_scope :admin_user do
     root to: "admin_users/sessions#new", as: :unauthenticated_root
   end
+  resources :editors
+  resources :annotators
 end

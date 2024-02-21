@@ -1,0 +1,17 @@
+%tr{ id: dom_id(annotator) }
+  %td.icon_cell
+    = link_to admin_annotator_path(annotator), class: 'd-block', data: { turbo_frame: 'modal_main' } do
+      %i.bi.bi-file-text.h3
+  %td
+    = annotator.id
+  %td
+    = annotator.fullname
+  %td
+    = annotator.email
+  %td
+    = link_to annotator.editor.fullname, admin_editor_path(annotator.editor), data: { turbo_frame: 'modal_sub' } if annotator.editor
+  %td
+    = annotator.created_at
+  %td.icon_cell
+    = link_to edit_admin_annotator_path(annotator), class: 'd-block', data: { turbo_frame: "modal_main" } do
+      %i.bi.bi-pencil-square.h3

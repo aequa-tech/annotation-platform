@@ -1,41 +1,38 @@
 = turbo_frame_tag(admin_remote_modal_id) do
   = render Admin::RemoteModalComponent.new('modal_sub') do |modal|
-    = modal.with_header { 'EDITORS' }
+    = modal.with_header { 'ANNOTATORS' }
     = modal.with_body do
       .modal-body
         .mb-3
-          = form_with model: Admin::EditorSearchForm.new, url: admin_editors_path, method: :get,
+          = form_with model: Admin::EditorSearchForm.new, url: admin_annotators_path, method: :get,
             scope: 'search', data: { turbo_frame: 'association_search_body' } do |form|
             .row.gy-3.align-items-end
               .col-lg-6.col-xl-4
-                = render Admin::FieldsetComponent.new(form, :fullname_full_like, :text, alignment: false,
-                  label: Admin::Editor.human_attribute_name(:fullname), placeholder: 'like %...%')
-              .col-lg-6.col-xl-4
-                = render Admin::FieldsetComponent.new(form, :email_full_like, :text, alignment: false,
-                  label: Admin::Editor.human_attribute_name(:email), placeholder: 'like %...%')
+                = render Admin::FieldsetComponent.new(form, :id_eq, :text, alignment: false,
+                  label: Admin::Annotator.human_attribute_name(:id), placeholder: '=')
               .col-lg-6.col-xl-4
                 = hidden_field_tag :name_field, params[:name_field]
                 = form.submit t('infold.operation.search'), class: 'btn btn-primary'
         = turbo_frame_tag 'association_search_body' do
-          - if @editors.blank?
+          - if @annotators.blank?
             .alert= t('infold.no_data')
           - else
             .table_wrapper.table-responsive.bg-white.border.mb-3
               %table.table.table-striped.table-hover
                 %thead
                   %tr
-                    %th= Admin::Editor.human_attribute_name(:id)
-                    %th= Admin::Editor.human_attribute_name(:fullname)
+                    %th= Admin::Annotator.human_attribute_name(:id)
+                    %th= Admin::Annotator.human_attribute_name(:fullname)
                     %th
                 %tbody
-                  - @editors.each do |editor|
+                  - @annotators.each do |annotator|
                     %tr
                       %td
-                        = editor.id
+                        = annotator.id
                       %td
-                        = editor.fullname
+                        = annotator.fullname
                       %td.icon_cell
                         %a{ href: '#', data: { action: "relation-search#select remote-modal#close",
-                          id: editor.id, name: editor.read_attribute(params[:name_field]) } }
+                          id: annotator.id, name: annotator.read_attribute(params[:name_field]) } }
                           %i.bi.bi-check2-square.h3
-            = paginate(@editors, views_prefix: "admin")
+            = paginate(@annotators, views_prefix: "admin")

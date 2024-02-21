@@ -1,0 +1,37 @@
+.list-group.mb-3
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold= annotator.class.human_attribute_name(:id)
+      .col-md-9
+        = annotator.id
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold= annotator.class.human_attribute_name(:fullname)
+      .col-md-9
+        = annotator.fullname
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold= annotator.class.human_attribute_name(:created_at)
+      .col-md-9
+        = annotator.created_at
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold= annotator.class.human_attribute_name(:updated_at)
+      .col-md-9
+        = annotator.updated_at
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold= annotator.class.human_attribute_name(:editor_id)
+      .col-md-9
+        = link_to annotator.editor.fullname, admin_editor_path(annotator.editor), data: { turbo_frame: 'modal_sub' } if annotator.editor
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold= annotator.class.human_attribute_name(:email)
+      .col-md-9
+        = annotator.email

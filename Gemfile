@@ -57,6 +57,7 @@ group :development, :test do
   gem "rspec-rails", "~> 6.1.0"
   gem "rubocop", require: false
   gem "rubocop-rspec", require: false
+  gem "shoulda-matchers", require: false
   gem "slim_lint", require: false
 end
 

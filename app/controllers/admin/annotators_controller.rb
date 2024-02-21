@@ -1,24 +1,23 @@
 module Admin
-  class EditorsController < BaseController
-    before_action { @page_title = "EDITORS" }
+  class AnnotatorsController < BaseController
+    before_action { @page_title = "ANNOTATORS" }
 
     def index
-      @search = EditorSearchForm.new(search_params)
-      @editors = @search.perform(params[:page], limit: params[:limit], csv: request.format == :csv)
+      @search = AnnotatorSearchForm.new(search_params)
+      @annotators = @search.perform(params[:page], limit: params[:limit], csv: request.format == :csv)
     end
 
     def show
-      @editor = Editor.find(params[:id])
+      @annotator = Annotator.find(params[:id])
     end
 
     def new
-      @editor = Editor.new
+      @annotator = Annotator.new
     end
 
     def create
-      @editor = Editor.new
-      @editor.assign_attributes(post_params)
-      if @editor.save
+      @annotator = Annotator.create(post_params)
+      if @annotator.persisted?
         flash.now[:notice] = t("infold.flash.created")
         render :form
       else
@@ -28,13 +27,12 @@ module Admin
     end
 
     def edit
-      @editor = Editor.find(params[:id])
+      @annotator = Annotator.find(params[:id])
     end
 
     def update
-      @editor = Editor.find(params[:id])
-      @editor.assign_attributes(post_params)
-      if @editor.save
+      @annotator = Annotator.find(params[:id])
+      if @annotator.update(post_params)
         flash.now[:notice] = t("infold.flash.updated")
         render :form
       else
@@ -44,9 +42,9 @@ module Admin
     end
 
     def destroy
-      @editor = Editor.find(params[:id])
-      if @editor.destroy
-        redirect_to admin_editors_path, status: :see_other, flash: { notice: t("infold.flash.destroyed") }
+      @annotator = Annotator.find(params[:id])
+      if @annotator.destroy
+        redirect_to admin_annotators_path, status: :see_other, flash: { notice: t("infold.flash.destroyed") }
       else
         flash.now[:alert] = t("flash.invalid_destroy")
         render :show, status: :unprocessable_entity
@@ -60,15 +58,17 @@ module Admin
         :id_eq,
         :fullname_full_like,
         :email_full_like,
+        :editor_id_eq,
         :sort_field,
         :sort_kind
       )
     end
 
     def post_params
-      params.require(:admin_editor).permit(
+      params.require(:admin_annotator).permit(
         :fullname,
-        :email
+        :email,
+        :editor_id
       )
     end
   end

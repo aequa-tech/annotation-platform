@@ -39,13 +39,16 @@ model:
 #    photo:
 #      kind: image
 app:
-#  title: EDITORS
+  title: EDITORS
 #  # index view settings (search condition, list and csv)
   index:
     conditions:
       - id:
           sign: eq
       - fullname:
+          form_kind: text
+          sign: full_like
+      - email:
           form_kind: text
           sign: full_like
 #      - status:
@@ -94,3 +97,9 @@ app:
 #      fields:
 #        - id
 #        - title
+  association_search:
+    conditions:
+      - fullname:
+          sign: full_like
+      - email:
+          sign: full_like

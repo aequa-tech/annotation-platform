@@ -1,7 +1,6 @@
 module Admin
   class EditorSearchForm < BaseSearchForm
-    set_condition :id_eq,
-      :fullname_full_like
+    set_condition :id_eq, :fullname_full_like, :email_full_like
 
     def perform(page = nil, limit: nil, csv: false)
       records = Editor.distinct
