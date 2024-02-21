@@ -43,7 +43,7 @@
                       td
                         = resource.description
                       td
-                        = resource.created_at
+                        = l(resource.created_at, format: :day_month_abbr)
                       td.icon_cell
                         = link_to "#", id: resource.id,
                           data: { action: "relation-search#select remote-modal#close" },

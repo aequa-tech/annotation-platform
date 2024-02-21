@@ -22,10 +22,10 @@
       .col-md-3
         .text-muted.fw-bold = resource.class.human_attribute_name(:created_at)
       .col-md-9
-        = resource.created_at
+        = l(resource.created_at, format: :day_month_abbr)
   .list-group-item
     .row
       .col-md-3
         .text-muted.fw-bold = resource.class.human_attribute_name(:updated_at)
       .col-md-9
-        = resource.updated_at
+        = l(resource.updated_at, format: :day_month_abbr)

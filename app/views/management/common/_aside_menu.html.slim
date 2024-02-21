@@ -4,7 +4,7 @@ aside.management-editor.navbar.navbar-vertical.navbar-expand-sm.navbar-dark.bg-d
       span.navbar-toggler-icon
 
     h1.navbar-brand.navbar-brand-autodark
-      a{ href="/management" } Management
+      a{ href="/management" } = t("layout.management.title")
 
     #sidebar-menu.collapse.navbar-collapse
       ul.navbar-nav.pt-lg-3
@@ -12,13 +12,13 @@ aside.management-editor.navbar.navbar-vertical.navbar-expand-sm.navbar-dark.bg-d
 
         li.nav-item
           = link_to management_annotators_path, class: "nav-link text-white" do
-            span.nav-link-title ANNOTATORS
+            span.nav-link-title = Annotator.model_name.plural.upcase
         li.nav-item
           = link_to management_taxonomies_path, class: "nav-link text-white" do
-            span.nav-link-title TAXONOMIES
+            span.nav-link-title = Taxonomy.model_name.plural.upcase
         li.nav-item
           = link_to management_corpora_path, class: "nav-link text-white" do
-            span.nav-link-title CORPORA
+            span.nav-link-title = Corpus.model_name.plural.upcase
 
       hr.text-white
 
