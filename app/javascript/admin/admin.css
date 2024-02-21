@@ -1,3 +1,17 @@
+#admin_wrapper {
+    display: flex;
+}
+
+.admin_content {
+    flex: 1;
+}
+
+#admin_wrapper .management-editor {
+    flex: 0.15;
+    position: relative;
+    width: unset;
+}
+
 i.pointer:hover,
 .cursor_pointer:hover,
 .form-check-label:hover,
