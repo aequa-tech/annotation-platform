@@ -10,6 +10,8 @@ tr id= dom_id(resource)
     = resource.editor_id
   td
     = l(resource.created_at, format: :day_month_abbr)
+  td
+    = l(resource.updated_at, format: :day_month_abbr)
   td.icon_cell
     = link_to edit_management_corpus_path(resource), class: "d-block", data: { turbo_frame: "modal_main" } do
       i.bi.bi-pencil-square.h3
