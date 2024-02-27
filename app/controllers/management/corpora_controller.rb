@@ -4,6 +4,8 @@ module Management
   class CorporaController < BaseController
     include CrudActions
 
+    after_action :create_text_lines, only: :create
+
     private
 
     def post_params
@@ -30,6 +32,13 @@ module Management
 
     def search_form_klass
       CorpusSearchForm
+    end
+
+    def create_text_lines
+      return unless @resource.input_file.attached?
+
+      blob_key = @resource.input_file.key
+      ImportCsvJob.perform_later(blob_key, @resource.id)
     end
   end
 end
