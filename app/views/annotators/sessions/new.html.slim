@@ -1,0 +1,87 @@
+#wrapper
+  = link_to root_path,
+            class: "position-absolute top-0 start-0 my-2 mx-4 z-index-3 h--70 d-inline-flex align-items-center" do
+    .logo
+      = image_tag "logo-aequa-tech.png", alt: "Annotations Portal", width: 210
+
+  .d-lg-flex.text-white.min-vh-100 style="background: linear-gradient(180deg,#ffff00 0,#1b1e29);"
+    .col-12.col-lg-5.d-lg-flex
+      .w-100.align-self-center
+        .py-7.px-5
+          h1.d-inline-block.text-align-end.text-center-md.text-center-xs.display-4.w-100.max-w-600
+            | Sign in
+            span.display-3.d-block.fw-medium
+              | Annotazioni
+    .col-12.col-lg-7.d-lg-flex
+      .w-100.align-self-center.text-center-md.text-center-xs.p-2
+        - klasses = "bs-validate p-5 py-6 rounded d-inline-block bg-white text-dark w-100 max-w-600"
+        = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: klasses }) do |form|
+          .form-floating.mb-3
+            = form.label :email, "Email"
+            = form.email_field :email, class: "form-control"
+          .input-group-over
+            .form-floating.mb-3
+              = form.label :password, "Password"
+              = form.password_field :password, class: "form-control"
+
+          .row
+            .col-12.col-md-6.mt-4
+              = form.submit "Login", class: "btn btn-primary w-100 transition-hover-top"
+            .col-12.col-md-6.mt-4.text-align-end.text-center-xs
+              = link_to "forgot your password?", "#", class: "btn px-0 link-normal"
+
+  footer#footer.text-white style="background: #1b1e29;"
+    .container.tet-white.py-5.d-lg-flex.flex-row.align-items-lg-center
+      .row.g-4.align-items-center
+        h3.col-lg-6.h2.mb-0
+          | Join our community by using our services and grow your business.
+        .col.text-lg-end
+          = link_to "https://2i3t.it/aequa-tech-nuova-costituzione/",
+                    target: "_blank",
+                    class: "btn btn-warning rounded-pill d-inline-flex align-items-center px-4" do
+            .text-dark.me-2
+              | About Us
+
+    hr.container.bg-gray-500.my-0
+    .container.py-5
+      .row.g-4
+        .col-12.col-lg-4.mb-4
+          h3.small.mb-4
+            | GET IN TOUCH
+
+          .small.d-flex.align-items-start.my-3
+            svg.me-3.flex-none.my-1(height="24px"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+              path(stroke-linecap="round"
+                   stroke-linejoin="round"
+                   stroke-width="2"
+                   d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z")
+            ul.list-unstyled.p-0.m-0.w-100
+              li
+                | Phone:
+                a.text-white.text-dashed href="tel:+39 02 8727 0000"
+                  |< +39 02 8727 0000
+              li
+                | Email:
+                a.text-white.text-dashed href="mail:mirko.lai@aequa-tech.com"
+                  |< mirko.lai@aequa-tech.com
+        .col-12.col-lg-4.mb-4
+        .col-12.col-lg-4.mb-4
+          h3.small.mb-4
+            | LEARN MORE
+          ul class="list-unstyled"
+            li class="list-item mb-2"
+              i class="fi fi-arrow-end me-2 smaller"
+              a class="text-gray-400" href="contact-1.html" Contact
+
+            li class="list-item mb-2"
+              i class="fi fi-arrow-end me-2 smaller"
+              a class="text-gray-400" href="about-us-1.html" About Us
+
+            li class="list-item mb-2"
+              i class="fi fi-arrow-end me-2 smaller"
+              a class="text-gray-400" href="page-terms-and-conditions.html" Terms & Conditions
+
+            li class="list-item mb-2"
+              i class="fi fi-arrow-end me-2 smaller"
+              a class="text-gray-400" href="page-cookie.html" GDPR & Cookies
