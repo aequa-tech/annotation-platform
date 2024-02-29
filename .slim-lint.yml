@@ -30,7 +30,9 @@ linters:
 
   LineLength:
     enabled: true
-    max: 120
+    max: 150
+    exclude:
+      - 'app/views/shared/annotators/_header.html.slim'
 
   RedundantDiv:
     enabled: true

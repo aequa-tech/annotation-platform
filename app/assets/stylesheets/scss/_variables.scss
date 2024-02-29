@@ -182,7 +182,7 @@ $input-btn-font-size:               $font-size-base !default;
 $input-btn-padding-y-sm:            .46rem !default;                        // default: .25rem
 $input-btn-padding-x-sm:            $input-btn-padding-x !default;          // default: .5rem
 $input-btn-font-size-sm:            $font-size-base !default;
- 
+
 $input-btn-padding-y-lg:            1.09rem !default;                        // default: .5rem
 $input-btn-padding-x-lg:            $input-btn-padding-x !default;           // default: 1rem
 $input-btn-font-size-lg:            $font-size-base !default;
@@ -206,12 +206,12 @@ $spacers: (
   4: $spacer * 1.5,
   5: $spacer * 3,
 
-  // -- --  
+  // -- --
   // +20Kb more (minified)
     6: $spacer * 4.5,
     7: $spacer * 6,
     8: $spacer * 8,
-  // -- --  
+  // -- --
 
 ) !default;
 
@@ -426,7 +426,7 @@ $breadcrumb-divider:                  quote("/") !default;
 
 // Enable the same shadow color on button hover
 $btn-hover-shadow-color-enable:     true !default;
-$btn-hover-shadow-color-size:       0 4px 11px !default;    // default: 0 4px 11px 
+$btn-hover-shadow-color-size:       0 4px 11px !default;    // default: 0 4px 11px
 
 
 // Buttons (added transition & pill radius)
@@ -527,7 +527,7 @@ $bg-gradient-default:                   linear-gradient(180deg, #2f2e80 0, #4c4b
 ///
 
 /// ======================================================================================
-/// ADMIN LAYOUT 
+/// ADMIN LAYOUT
 /// _layout/_admin.scss - less than 5Kb minified (3.7Kb 8 Oct. 2019)
 /// We only set few margins/heights to avoid bugs on fixed header/sidebar
 ///
@@ -616,8 +616,3 @@ $layout-boxed-width:            1200px !default;             // boxed width
 $layout-boxed-margin:           60px !default;               // top|bottom margins
 $layout-boxed-radius:           .25rem !default;             // border radius (corners rounded)
 $layout-boxed-shadow:           $box-shadow-md !default;     // set none for no shadow
-
-
-
-
-

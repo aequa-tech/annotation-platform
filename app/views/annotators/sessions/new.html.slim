@@ -1,31 +1,30 @@
-#wrapper
-  = link_to root_path,
-            class: "position-absolute top-0 start-0 my-2 mx-4 z-index-3 h--70 d-inline-flex align-items-center" do
-    .logo
-      = image_tag "logo-aequa-tech.png", alt: "Annotations Portal", width: 210
+= link_to root_path,
+          class: "position-absolute top-0 start-0 my-2 mx-4 z-index-3 h--70 d-inline-flex align-items-center" do
+  .logo
+    = image_tag "logo-aequa-tech.png", alt: "Annotations Portal", width: 210
 
-  .d-lg-flex.text-white.min-vh-100 style="background: linear-gradient(180deg,#FEEFE6 0,#FC660D);"
-    .col-12.col-lg-5.d-lg-flex
-      .w-100.align-self-center
-        .py-7.px-5
-          h1.d-inline-block.text-align-end.text-center-md.text-center-xs.display-4.w-100.max-w-600
-            | Sign in
-            span.display-3.d-block.fw-medium
-              | Annotazioni
-    .col-12.col-lg-7.d-lg-flex
-      .w-100.align-self-center.text-center-md.text-center-xs.p-2
-        - klasses = "bs-validate p-5 py-6 rounded d-inline-block bg-white text-dark w-100 max-w-600"
-        = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: klasses }) do |form|
+.d-lg-flex.text-white.min-vh-100 style="background: linear-gradient(180deg,#FEEFE6 0,#FC660D);"
+  .col-12.col-lg-5.d-lg-flex
+    .w-100.align-self-center
+      .py-7.px-5
+        h1.d-inline-block.text-align-end.text-center-md.text-center-xs.display-4.w-100.max-w-600
+          | Sign in
+          span.display-3.d-block.fw-medium
+            | Annotazioni
+  .col-12.col-lg-7.d-lg-flex
+    .w-100.align-self-center.text-center-md.text-center-xs.p-2
+      - klasses = "bs-validate p-5 py-6 rounded d-inline-block bg-white text-dark w-100 max-w-600"
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: klasses }) do |form|
+        .form-floating.mb-3
+          = form.email_field :email, placeholder: "Email", class: "form-control"
+          = form.label :email, "Email"
+        .input-group-over
           .form-floating.mb-3
-            = form.email_field :email, placeholder: "Email", class: "form-control"
-            = form.label :email, "Email"
-          .input-group-over
-            .form-floating.mb-3
-              = form.password_field :password, placeholder: "Password", class: "form-control"
-              = form.label :password, "Password"
+            = form.password_field :password, placeholder: "Password", class: "form-control"
+            = form.label :password, "Password"
 
-          .row
-            .col-12.col-md-6.mt-4
-              = form.submit "Login", class: "btn btn-primary w-100 transition-hover-top"
-            .col-12.col-md-6.mt-4.text-align-end.text-center-xs
-              = link_to "forgot your password?", "#", class: "btn px-0 link-normal"
+        .row
+          .col-12.col-md-6.mt-4
+            = form.submit "Login", class: "btn btn-primary w-100 transition-hover-top"
+          .col-12.col-md-6.mt-4.text-align-end.text-center-xs
+            = link_to "forgot your password?", "#", class: "btn px-0 link-normal"
