@@ -9,7 +9,7 @@ devise_scope :annotator do
 end
 
 authenticated :annotator do
-  root to: "dashboard#show", as: :root
+  root to: "tasks#assigned", as: :root
 end
 
 devise_scope :annotator do
