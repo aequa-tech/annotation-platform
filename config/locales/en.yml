@@ -34,3 +34,11 @@ en:
   time:
     formats:
       day_month_abbr: "%a, %d %b %Y"
+  shared:
+    annotators:
+      header:
+        menu:
+          proposed_tasks: "Proposed Tasks"
+          assigned_tasks: "Assigned Tasks"
+          started_tasks: "Started Tasks"
+          completed_tasks: "Completed Tasks"

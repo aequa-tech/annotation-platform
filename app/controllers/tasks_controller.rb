@@ -2,6 +2,7 @@
 
 class TasksController < ApplicationController
   def assigned
+    @tasks = TextLine.all
   end
 
   def completed
