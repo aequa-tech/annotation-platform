@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_16_153844) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_21_144214) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -104,6 +104,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_16_153844) do
     t.index ["title", "editor_id"], name: "index_taxonomies_on_title_and_editor_id", unique: true
   end
 
+  create_table "text_lines", force: :cascade do |t|
+    t.string "external_id"
+    t.text "content", null: false
+    t.integer "position", null: false
+    t.bigint "corpus_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["corpus_id"], name: "index_text_lines_on_corpus_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "annotators", "editors"
@@ -111,4 +121,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_16_153844) do
   add_foreign_key "corpora_taxonomies", "corpora"
   add_foreign_key "corpora_taxonomies", "taxonomies"
   add_foreign_key "taxonomies", "editors"
+  add_foreign_key "text_lines", "corpora"
 end

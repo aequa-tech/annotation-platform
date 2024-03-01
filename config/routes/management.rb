@@ -18,5 +18,7 @@ namespace "management" do
   end
   resources :annotators
   resources :taxonomies
-  resources :corpora
+  resources :corpora do
+    resources :text_lines, only: [:index, :show]
+  end
 end

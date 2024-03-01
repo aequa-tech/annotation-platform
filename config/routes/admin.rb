@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "sidekiq/web"
+
 devise_for :admin_users, skip: :all
 devise_scope :admin_user do
   get "admin/login" => "admin/admin_users/sessions#new", :as => :new_admin_user_session
@@ -13,6 +15,7 @@ namespace "admin" do
   resources :admin_users
   authenticated :admin_user do
     root to: "admin_users#index", as: :root
+    mount Sidekiq::Web => "/sidekiq" # mount Sidekiq::Web in your Rails app
   end
   devise_scope :admin_user do
     root to: "admin_users/sessions#new", as: :unauthenticated_root

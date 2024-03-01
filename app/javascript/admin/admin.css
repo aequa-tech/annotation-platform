@@ -1,12 +1,12 @@
-#admin_wrapper {
+#management_wrapper {
     display: flex;
 }
 
-.admin_content {
+.management_content {
     flex: 1;
 }
 
-#admin_wrapper .management-editor {
+#management_wrapper .management-editor {
     flex: 0.15;
     position: relative;
     width: unset;

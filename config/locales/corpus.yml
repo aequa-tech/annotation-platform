@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    attributes:
+      corpus:
+        name: Name
+        description: Description
+        language: Language
+        user: User
+        created_at: Created at
+        updated_at: Updated at
+        text_lines: Text Lines
+  views:
+    corpus:
+      no_data: No imported data
