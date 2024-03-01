@@ -5,7 +5,7 @@
 = modal.with_body do
   .modal-body
     = render "show_content", resource: @resource
-- unless admin_remote_modal_id == "modal_sub"
+- unless admin_remote_modal_id == "modal_sub" || !controller.respond_to?(:edit) || !controller.respond_to?(:destroy)
   = modal.with_footer do
     .modal-footer
       = link_to t("infold.operation.edit"), [:edit, @resource],

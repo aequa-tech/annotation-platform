@@ -1,0 +1,15 @@
+tr id="#{dom_id(resource)}"
+  td.icon_cell
+    = link_to management_corpus_text_line_path(@corpus, resource),
+      class: "d-block", data: { turbo_frame: "modal_main" } do
+      i.bi.bi-file-text.h3
+  td
+    = resource.external_id
+  td
+    = resource.position
+  td
+    = resource.content.truncate(60, omission: "... (continued)")
+  td
+    = l(resource.created_at, format: :day_month_abbr)
+  td
+    = l(resource.updated_at, format: :day_month_abbr)

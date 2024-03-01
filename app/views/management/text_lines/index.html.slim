@@ -1,0 +1,29 @@
+= content_for :search_form do
+  = form_with model: @search, url: [:management, @corpus, :text_lines],
+    method: :get, scope: "search",
+    data: { index_page_target: "searchForm" } do |form|
+    = form.hidden_field :sort_field, data: { index_page_target: "sortField" }
+    = form.hidden_field :sort_kind, data: { index_page_target: "sortKind" }
+    .mb-3
+      = render Admin::FieldsetComponent.new(form, :external_id_eq, :text, alignment: false,
+        label: Management::TextLine.human_attribute_name(:external_id), placeholder: "=")
+    hr.my-3
+    .row.gx-2
+      .col-6.order-2.d-grid
+        = form.submit t("infold.operation.search"), class: "btn btn-primary"
+      .col-6.d-grid
+        = link_to t("infold.operation.clear"), [:management, @corpus, :text_lines], class: "btn btn-secondary"
+
+= content_for :results_table_columns do
+  th = render Admin::SortableComponent.new(@search,
+    :external_id, label: Management::TextLine.human_attribute_name(:external_id))
+  th = render Admin::SortableComponent.new(@search,
+    :position, label: Management::TextLine.human_attribute_name(:position))
+  th = render Admin::SortableComponent.new(@search, :content,
+    label: Management::TextLine.human_attribute_name(:content))
+  th = render Admin::SortableComponent.new(@search, :created_at,
+    label: Management::TextLine.human_attribute_name(:created_at))
+  th = render Admin::SortableComponent.new(@search, :updated_at,
+    label: Management::TextLine.human_attribute_name(:updated_at))
+
+= render partial: "shared/index", locals: { klass_module: :management, klass_name: :text_line }

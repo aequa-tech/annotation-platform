@@ -2,9 +2,10 @@ nav.navbar.navbar-light
   .container-fluid
     ol.breadcrumb
       li.breadcrumb-item.active = klass_name.to_s.pluralize
-    .ms-auto
-      = link_to t("infold.operation.new"), [:new, klass_module, klass_name],
-        class: "btn btn-warning", data: { turbo_frame: "modal_main" }
+    - if controller.respond_to?(:new)
+      .ms-auto
+        = link_to t("infold.operation.new"), [:new, klass_module, klass_name],
+          class: "btn btn-warning", data: { turbo_frame: "modal_main" }
 
 #index_page.d-md-flex data-controller="index-page" data-index-page-target="wrapper"
   #conditions.bg-white.container-fluid.border-end.pe-3.py-3
