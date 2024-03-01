@@ -68,7 +68,8 @@ module Admin
       params.require(:admin_annotator).permit(
         :fullname,
         :email,
-        :editor_id
+        :editor_id,
+        :password
       )
     end
   end
