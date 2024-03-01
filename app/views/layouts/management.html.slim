@@ -18,10 +18,10 @@ html
     = javascript_include_tag "admin", "data-turbo-track": "reload", defer: true
   - body_classes = editor_signed_in? ? "" : "border-top-wide border-primary"
   body class="#{body_classes}"
-    #admin_wrapper
+    #management_wrapper
       - if editor_signed_in?
         = render "management/common/aside_menu"
-      .admin_content
+      .management_content
         = yield
         = turbo_frame_tag "modal_main", target: "_top"
         = turbo_frame_tag "modal_sub", target: "_top"
