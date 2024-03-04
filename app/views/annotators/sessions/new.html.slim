@@ -3,7 +3,7 @@
   .logo
     = image_tag "logo-aequa-tech.png", alt: "Annotations Portal", width: 210
 
-.d-lg-flex.text-white.min-vh-100 style="background: linear-gradient(180deg,#FEEFE6 0,#FC660D);"
+.d-lg-flex.text-black.min-vh-100
   .col-12.col-lg-5.d-lg-flex
     .w-100.align-self-center
       .py-7.px-5
@@ -14,17 +14,20 @@
   .col-12.col-lg-7.d-lg-flex
     .w-100.align-self-center.text-center-md.text-center-xs.p-2
       - klasses = "bs-validate p-5 py-6 rounded d-inline-block bg-white text-dark w-100 max-w-600"
-      = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: klasses }) do |form|
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: klasses }) do |form|
         .form-floating.mb-3
-          = form.email_field :email, placeholder: "Email", class: "form-control"
+          = form.email_field :email, autofocus: true, placeholder: "Email", class: "form-control"
           = form.label :email, "Email"
         .input-group-over
           .form-floating.mb-3
             = form.password_field :password, placeholder: "Password", class: "form-control"
             = form.label :password, "Password"
+        .input-group-over
+          .form-floating.mb-3
+            = form.input :remember_me, as: :boolean if devise_mapping.rememberable?
 
         .row
           .col-12.col-md-6.mt-4
             = form.submit "Login", class: "btn btn-primary w-100 transition-hover-top"
           .col-12.col-md-6.mt-4.text-align-end.text-center-xs
-            = link_to "forgot your password?", "#", class: "btn px-0 link-normal"
+            = link_to "forgot your password?", new_password_path(resource_name), class: "btn px-0 link-normal"

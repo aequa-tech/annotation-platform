@@ -13,5 +13,5 @@ html lang="en"
     #wrapper
       - if current_annotator.present?
         = render partial: "shared/annotators/header"
-      .bg-lime.py-5 = yield
+      .bg-lime = yield
       = render partial: "shared/annotators/footer"

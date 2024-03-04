@@ -1,16 +1,7 @@
-footer#footer.text-black style="background: #FC660D;"
-  .container.py-5.d-lg-flex.flex-row.align-items-lg-center
-    .row.g-4.align-items-center
-      h2.col-lg-6.h2.mb-0
-        | Join our community by using our services and grow your business.
-      .col.text-lg-end
-        = link_to "https://2i3t.it/aequa-tech-nuova-costituzione/",
-                  target: "_blank",
-                  class: "btn btn-warning rounded-pill d-inline-flex align-items-center px-4" do
-          .text-dark.me-2
-            | About Us
+- background_class = current_annotator.present? ? "bg-white" : "bg-lime"
 
-  hr.container.bg-gray-500.my-0
+footer#footer class="text-black #{background_class}"
+  hr.container.bg-gray-100.my-0
   .container.py-5
     .row.g-4
       .col-12.col-lg-4.mb-4

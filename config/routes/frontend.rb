@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-devise_for :annotators, skip: :all
+devise_for :annotators, only: :passwords
 
 devise_scope :annotator do
   get :login, to: "annotators/sessions#new", as: :new_annotator_session
