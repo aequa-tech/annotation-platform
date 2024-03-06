@@ -36,7 +36,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
+  # Use :contabo for storing files on S3 storage. (see config/storage.yml for options).
   config.active_storage.service = :contabo
 
   # Mount Action Cable outside main process or domain.
