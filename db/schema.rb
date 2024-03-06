@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_28_144938) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_06_104205) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,6 +98,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_144938) do
     t.index ["email"], name: "index_editors_on_email", unique: true
   end
 
+  create_table "lines_sets", force: :cascade do |t|
+    t.bigint "corpus_id", null: false
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["corpus_id", "title"], name: "index_lines_sets_on_corpus_id_and_title", unique: true
+    t.index ["corpus_id"], name: "index_lines_sets_on_corpus_id"
+  end
+
   create_table "taxonomies", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -115,7 +124,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_144938) do
     t.bigint "corpus_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "lines_set_id"
     t.index ["corpus_id"], name: "index_text_lines_on_corpus_id"
+    t.index ["lines_set_id"], name: "index_text_lines_on_lines_set_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -124,6 +135,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_28_144938) do
   add_foreign_key "corpora", "editors"
   add_foreign_key "corpora_taxonomies", "corpora"
   add_foreign_key "corpora_taxonomies", "taxonomies"
+  add_foreign_key "lines_sets", "corpora"
   add_foreign_key "taxonomies", "editors"
   add_foreign_key "text_lines", "corpora"
+  add_foreign_key "text_lines", "lines_sets"
 end

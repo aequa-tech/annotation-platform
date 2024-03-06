@@ -5,11 +5,16 @@
 = modal.with_body do
   .modal-body
     = render "show_content", resource: @resource
-- unless admin_remote_modal_id == "modal_sub" || !controller.respond_to?(:edit) || !controller.respond_to?(:destroy)
+- unless admin_remote_modal_id == "modal_sub"
   = modal.with_footer do
     .modal-footer
-      = link_to t("infold.operation.edit"), [:edit, @resource],
-        class: "btn btn-primary", data: { turbo_frame: "modal_main" }
-      = link_to t("infold.operation.delete"), [@resource],
-        class: "btn btn-danger ms-1", data: { turbo_confirm: t("infold.operation.confirm",
-        submit: t("infold.operation.delete")), turbo_method: :delete, turbo_frame: "_top" }
+      - if controller.respond_to?(:edit_lines_sets_count)
+        = link_to t("infold.operation.edit_lines_sets_count"), [:edit_lines_sets_count, @resource],
+          class: "btn btn-primary", data: { turbo_frame: "modal_main" }
+      - if controller.respond_to?(:edit)
+        = link_to t("infold.operation.edit"), [:edit, @resource],
+          class: "btn btn-primary", data: { turbo_frame: "modal_main" }
+      - if controller.respond_to?(:destroy)
+        = link_to t("infold.operation.delete"), [@resource],
+          class: "btn btn-danger ms-1", data: { turbo_confirm: t("infold.operation.confirm",
+          submit: t("infold.operation.delete")), turbo_method: :delete, turbo_frame: "_top" }
