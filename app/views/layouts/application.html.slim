@@ -1,5 +1,5 @@
 doctype html
-html
+html lang="en"
   head
     title AequaAnnotations
     meta name="viewport" content="width=device-width,initial-scale=1"
@@ -10,4 +10,8 @@ html
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
 
   body
-    = yield
+    #wrapper
+      - if current_annotator.present?
+        = render partial: "shared/annotators/header"
+      .bg-lime = yield
+      = render partial: "shared/annotators/footer"

@@ -1,0 +1,35 @@
+= link_to root_path,
+          class: "position-absolute top-0 start-0 my-2 mx-4 z-index-3 h--70 d-inline-flex align-items-center" do
+  .logo
+    = image_tag "logo-aequa-tech.png", alt: "Annotations Portal", width: 210
+
+.d-lg-flex.text-black.min-vh-100
+  .col-12.col-lg-5.d-lg-flex
+    .w-100.align-self-center
+      .py-7.px-5
+        h1.d-inline-block.text-align-end.text-center-md.text-center-xs.display-4.w-100.max-w-600
+          | Change your password
+  .col-12.col-lg-7.d-lg-flex
+    .w-100.align-self-center.text-center-md.text-center-xs.p-2
+      - klasses = "bs-validate p-5 py-6 rounded d-inline-block bg-white text-dark w-100 max-w-600"
+
+      = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: klasses }) do |f|
+        = f.error_notification
+
+        = f.input :reset_password_token, as: :hidden
+        = f.full_error :reset_password_token
+
+        .form-inputs
+          = f.input :password,
+                      label: "New password",
+                      required: true,
+                      autofocus: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      input_html: { autocomplete: "new-password" }
+          = f.input :password_confirmation,
+                      label: "Confirm your new password",
+                      required: true,
+                      input_html: { autocomplete: "new-password" }
+
+        .form-actions
+          = f.button :submit, "Change my password", class: "btn btn-primary w-100 fw-medium"

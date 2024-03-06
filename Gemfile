@@ -12,6 +12,7 @@ gem "infold", require: false
 # Gems required by infold:
 gem "active_decorator"
 gem "devise"
+gem "devise-i18n"
 gem "enum_help"
 gem "haml-rails"
 gem "kaminari"
@@ -66,4 +67,5 @@ end
 group :development do
   gem "web-console"
   gem "overcommit"
+  gem "letter_opener"
 end
