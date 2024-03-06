@@ -45,3 +45,12 @@
           = link_to "Visualizza import", management_corpus_text_lines_path(resource)
         - else
           = t("views.corpus.no_data")
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:lines_sets)
+      .col-md-9
+        - if resource.lines_sets.any?
+          = link_to "Visualizza import", management_corpus_lines_sets_path(resource)
+        - else
+          = t("views.corpus.no_data")

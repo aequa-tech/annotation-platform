@@ -3,8 +3,16 @@ class AssignTextLinesToSetsJob < ActiveJob::Base
 
   def perform(corpus_id, text_lines_count)
     corpus = Corpus.find(corpus_id)
-    corpus.text_lines.each_slice(sets_count) do |lines|
-      corpus.lines_sets.create!(text_lines: lines)
+    counter = 0
+    set_index = 0
+    while corpus.text_lines.ordered.offset(counter).limit(text_lines_count.to_i).any?
+      corpus.text_lines
+        .ordered
+        .offset(counter).limit(text_lines_count.to_i)
+        .update_all(lines_set_id: corpus.lines_sets[set_index].id)
+
+      counter += text_lines_count.to_i
+      set_index += 1
     end
   end
 end
