@@ -17,6 +17,7 @@ gem "enum_help"
 gem "haml-rails"
 gem "kaminari"
 gem "view_component"
+gem "aws-sdk-s3", require: false
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
@@ -62,6 +63,7 @@ group :development, :test do
   gem "rubocop-rspec", require: false
   gem "shoulda-matchers", require: false
   gem "slim_lint", require: false
+  gem "dotenv"
 end
 
 group :development do

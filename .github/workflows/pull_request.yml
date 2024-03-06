@@ -1,6 +1,10 @@
 env:
   RAILS_ENV: test
   POSTGRES_PASSWORD: password
+  S3_BASE_URL: 'http://localhost:3000'
+  S3_ACCESS_KEY: '1234'
+  S3_SECRET_KEY: '1234'
+  S3_BUCKET_NAME: 'bucket'
 
 name: Pipeline for pull requests
 on:
