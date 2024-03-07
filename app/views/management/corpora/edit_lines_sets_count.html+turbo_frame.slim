@@ -1,0 +1,17 @@
+= turbo_frame_tag("modal_main") do
+  = simple_form_for @resource, url: [:manage_sets, @resource] do |form|
+    = render Admin::RemoteModalComponent.new(backdrop: :static) do |modal|
+      = modal.with_header do
+        ol.breadcrumb.text-dark
+          li.breadcrumb-item Lines Set
+          li.breadcrumb-item.active = t("infold.operation.new")
+      = modal.with_body do
+        .modal-body#form_body
+          .list-group.mb-3
+            .list-group-item
+              = render Admin::FieldsetComponent.new(form, :lines_sets_count, :number)
+
+      = modal.with_footer do
+        .modal-footer
+          button.btn.btn-secondary data-bs-dismiss="modal" type="button" = t("infold.operation.cancel")
+          = form.submit t("infold.operation.create"), class: "btn btn-primary"
