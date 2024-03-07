@@ -10,6 +10,7 @@ end
 
 authenticated :annotator do
   root to: "tasks#assigned", as: :root
+  resources :text_lines, only: [:show]
 end
 
 devise_scope :annotator do

@@ -15,7 +15,7 @@
             .col
               .d-flex.align-items-center
                 // task name
-                = link_to task.content.truncate(50), "#", class: "d-block w-100 lh-sm fs-6 link-normal"
+                = link_to task.content.truncate(50), text_line_path(task), class: "d-block w-100 lh-sm fs-6 link-normal"
             .col-auto
               // task info
               .d-inline-block
