@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_06_104205) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_12_091909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_104205) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "annotations", force: :cascade do |t|
+    t.bigint "text_line_id", null: false
+    t.bigint "annotator_id", null: false
+    t.jsonb "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["annotator_id"], name: "index_annotations_on_annotator_id"
+    t.index ["text_line_id"], name: "index_annotations_on_text_line_id"
   end
 
   create_table "annotators", force: :cascade do |t|
@@ -131,6 +141,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_06_104205) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "annotations", "annotators"
+  add_foreign_key "annotations", "text_lines"
   add_foreign_key "annotators", "editors"
   add_foreign_key "corpora", "editors"
   add_foreign_key "corpora_taxonomies", "corpora"
