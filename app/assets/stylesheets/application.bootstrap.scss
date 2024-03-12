@@ -1,2 +1,8 @@
 @import 'scss/main';
 @import 'bootstrap-icons/font/bootstrap-icons';
+@import "@recogito/recogito-js/src/TextAnnotator.scss";
+
+// Recogito annotation inserts a layer which is not needed in our case
+.r6o-relations-layer {
+  display: none;
+}
