@@ -38,3 +38,23 @@ async function DeleteAnnotation(annotation){
 }
 
 export { DeleteAnnotation }
+
+
+async function UpdateAnnotation(annotation){
+  try {
+    const response = await fetch(ApiUrl + QueryParams, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Authorization': 'Token ' + window.localStorage.getItem("auth_token")
+      },
+      body: JSON.stringify({"annotation": annotation})
+    });
+    const data = await response.json();
+    console.log('Success:', data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+export { UpdateAnnotation }

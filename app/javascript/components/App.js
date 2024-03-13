@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Recogito } from "@recogito/recogito-js";
-import { CreateAnnotation, DeleteAnnotation } from "./services/AnnotationAPI";
+import { CreateAnnotation, DeleteAnnotation, UpdateAnnotation } from "./services/AnnotationAPI";
 import { AnnotationsContext, TextLineContext, ApiUrl, QueryParams } from "./services/AnnotationContext";
 import TaxonomySelectorWidget from "./widgets/TaxonomySelectorWidget";
 
@@ -21,7 +21,7 @@ function App(props) {
 
     annotorious.loadAnnotations(ApiUrl + QueryParams).then((list) => {
       console.log("loaded annotations", list);
-      setAnnotations(list);
+      setAnnotations(list); // TODO: not working
     });
 
     annotorious.on("createAnnotation", (annotation) => {
@@ -29,8 +29,7 @@ function App(props) {
     });
 
     annotorious.on("updateAnnotation", (annotation) => {
-      // put an UPDATE to the server
-      console.log("current annotation", annotation);
+      UpdateAnnotation(annotation);
     });
 
     annotorious.on("deleteAnnotation", (annotation) => {
