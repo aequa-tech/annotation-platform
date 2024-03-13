@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Recogito } from "@recogito/recogito-js";
-import { CreateAnnotation } from "./services/AnnotationAPI";
-import { AnnotationsContext, TextLineContext, ApiUrl } from "./services/AnnotationContext";
+import { CreateAnnotation, DeleteAnnotation } from "./services/AnnotationAPI";
+import { AnnotationsContext, TextLineContext, ApiUrl, QueryParams } from "./services/AnnotationContext";
 import TaxonomySelectorWidget from "./widgets/TaxonomySelectorWidget";
 
 function App(props) {
@@ -19,14 +19,12 @@ function App(props) {
   annotorious = new Recogito(config);
 
   useEffect(() => {
-    annotorious.loadAnnotations(ApiUrl).then((list) => {
+    annotorious.loadAnnotations(ApiUrl + QueryParams).then((list) => {
       console.log("loaded annotations", list);
       setAnnotations(list);
     });
 
     annotorious.on("createAnnotation", (annotation) => {
-      // post a CREATE to the server
-      console.log("current annotation", annotation);
       CreateAnnotation(annotation);
     });
 
@@ -36,8 +34,7 @@ function App(props) {
     });
 
     annotorious.on("deleteAnnotation", (annotation) => {
-      // DELETE an annotation from the server
-      console.log("current annotation", annotation);
+      DeleteAnnotation(annotation);
     });
 
     annotorious.setAuthInfo({
