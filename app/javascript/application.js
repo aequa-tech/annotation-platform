@@ -4,12 +4,28 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './components/App';
 
-const element = document.getElementById('root');
-const textEl = document.getElementById('text-line-content');
-const root = createRoot(element);
-const attributes = Array.from(textEl.attributes).reduce((attrs, attr) => {
-  attrs[attr.name] = attr.value;
-  return attrs;
-}, {});
+export default function mount(components) {
+  document.addEventListener("DOMContentLoaded", () => {
+    const mountPoints = document.querySelectorAll("[data-react-component]");
+    mountPoints.forEach((mountPoint) => {
+      const { dataset } = mountPoint;
+      const componentName = dataset.reactComponent;
+      if (componentName) {
+        const Component = components[componentName];
+        if (Component) {
+          const props = JSON.parse(dataset.props);
+          const root = createRoot(mountPoint);
+          root.render(<Component {...props} />);
+        } else {
+          console.warn(
+            "WARNING: No component found for: ",
+            dataset.reactComponent,
+            components
+          );
+        }
+      }
+    });
+  });
+}
 
-root.render(<App {...attributes} />);
+mount({ App });
