@@ -7,18 +7,18 @@ import TaxonomySelectorWidget from "./widgets/TaxonomySelectorWidget";
 function App(props) {
   let annotorious = null;
   const [annotations, setAnnotations] = useState({});
-  const config = {
-    widgets: [
-      { widget: "COMMENT" },
-      { widget: TaxonomySelectorWidget },
-    ],
-    readOnly: false,
-    content: props.id,
-  };
-
-  annotorious = new Recogito(config);
 
   useEffect(() => {
+    const config = {
+      widgets: [
+        { widget: "COMMENT" },
+        { widget: TaxonomySelectorWidget },
+      ],
+      readOnly: false,
+      content: props.id,
+    };
+    annotorious = new Recogito(config);
+
     annotorious.loadAnnotations(ApiUrl + QueryParams).then((list) => {
       console.log("loaded annotations", list);
       setAnnotations(list);
