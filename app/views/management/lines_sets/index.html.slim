@@ -17,5 +17,11 @@
 = content_for :results_table_columns do
   th = render Admin::SortableComponent.new(@search,
     :title, label: Management::LinesSet.human_attribute_name(:title))
+  th = render Admin::SortableComponent.new(@search,
+    :text_lines_count, label: I18n.t("views.lines_set.index.text_lines_count"))
+  th = render Admin::SortableComponent.new(@search, :created_at,
+    label: Management::LinesSet.human_attribute_name(:created_at))
+  th = render Admin::SortableComponent.new(@search, :updated_at,
+    label: Management::LinesSet.human_attribute_name(:updated_at))
 
 = render partial: "shared/index", locals: { klass_module: :management, klass_name: :lines_set }

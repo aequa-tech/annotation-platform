@@ -1,0 +1,11 @@
+en:
+  views:
+    lines_set:
+      index:
+        text_lines_count: Number of text lines
+      header:
+        menu:
+          proposed_tasks: "Proposed Tasks"
+          assigned_tasks: "Assigned Tasks"
+          started_tasks: "Started Tasks"
+          completed_tasks: "Completed Tasks"

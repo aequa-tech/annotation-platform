@@ -9,6 +9,7 @@ en:
         created_at: Created at
         updated_at: Updated at
         text_lines: Text Lines
+        lines_sets_count: Number of text lines per set
   views:
     corpus:
       no_data: No imported data

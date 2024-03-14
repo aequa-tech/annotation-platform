@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_12_091909) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_14_102922) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,7 +60,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_091909) do
     t.jsonb "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "task_id"
     t.index ["annotator_id"], name: "index_annotations_on_annotator_id"
+    t.index ["task_id"], name: "index_annotations_on_task_id"
     t.index ["text_line_id"], name: "index_annotations_on_text_line_id"
   end
 
@@ -117,6 +119,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_091909) do
     t.index ["corpus_id"], name: "index_lines_sets_on_corpus_id"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.bigint "annotator_id", null: false
+    t.bigint "lines_set_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["annotator_id", "lines_set_id"], name: "index_tasks_on_annotator_id_and_lines_set_id", unique: true
+    t.index ["annotator_id"], name: "index_tasks_on_annotator_id"
+    t.index ["lines_set_id"], name: "index_tasks_on_lines_set_id"
+  end
+
   create_table "taxonomies", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -142,12 +154,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_12_091909) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "annotations", "annotators"
+  add_foreign_key "annotations", "tasks"
   add_foreign_key "annotations", "text_lines"
   add_foreign_key "annotators", "editors"
   add_foreign_key "corpora", "editors"
   add_foreign_key "corpora_taxonomies", "corpora"
   add_foreign_key "corpora_taxonomies", "taxonomies"
   add_foreign_key "lines_sets", "corpora"
+  add_foreign_key "tasks", "annotators"
+  add_foreign_key "tasks", "lines_sets"
   add_foreign_key "taxonomies", "editors"
   add_foreign_key "text_lines", "corpora"
   add_foreign_key "text_lines", "lines_sets"
