@@ -6,7 +6,8 @@ module Management
 
     def index
       @search = search_form_klass.new(search_params)
-      @resources = @search.perform(params[:page], limit: params[:limit], csv: request.format == :csv)
+      @resources = @search.perform(params[:page], limit: params[:limit], csv: request.format == :csv).where(corpus_id: @corpus.id)
+      @resources = @resources.where(lines_set_id: params[:lines_set_id]) if params[:lines_set_id].present?
     end
 
     def show

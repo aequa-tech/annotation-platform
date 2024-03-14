@@ -7,6 +7,8 @@ tr id="#{dom_id(resource)}"
     = resource.title
   td
     = resource.text_lines.count
+    |< |
+    =< link_to "show lines", management_corpus_lines_set_text_lines_path(@corpus, resource), class: ""
   td
     = l(resource.created_at, format: :day_month_abbr)
   td
