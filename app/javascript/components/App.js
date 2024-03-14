@@ -3,6 +3,8 @@ import { Recogito } from "@recogito/recogito-js";
 import { CreateAnnotation, DeleteAnnotation, UpdateAnnotation } from "./services/AnnotationAPI";
 import { AnnotationsContext, TextLineContext, ApiUrl, QueryParams } from "./services/AnnotationContext";
 import TaxonomySelectorWidget from "./widgets/TaxonomySelectorWidget";
+import SimpleTextWidget from "./widgets/SimpleTextWidget";
+
 
 function App(props) {
   let annotorious = null;
@@ -11,8 +13,9 @@ function App(props) {
   useEffect(() => {
     const config = {
       widgets: [
-        { widget: "COMMENT" },
-        { widget: TaxonomySelectorWidget },
+        // { widget: TaxonomySelectorWidget },
+        { widget: SimpleTextWidget },
+        { widget: "TAG", vocabulary: ['Tag 1', 'Tag 2', 'Tag 3'] }
       ],
       readOnly: false,
       content: props.id,
