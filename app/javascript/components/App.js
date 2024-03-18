@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Recogito } from "@recogito/recogito-js";
+import { Recogito } from "@recogito/recogito-js/src/index";
 import { CreateAnnotation, DeleteAnnotation, UpdateAnnotation } from "./services/AnnotationAPI";
 import { AnnotationsContext, TextLineContext, ApiUrl, QueryParams } from "./services/AnnotationContext";
 import TaxonomySelectorWidget from "./widgets/TaxonomySelectorWidget";
