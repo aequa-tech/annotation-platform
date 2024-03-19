@@ -1,0 +1,13 @@
+.container
+  main#middle.flex-fill.mx-auto
+
+    header
+      .row.g-1.align-items-center
+        .col
+          h1.h4 Annotate
+
+    section.p-0.container-fluid
+      .list-divider.p-4
+      // item
+      p#text-line-content = @text_line.content
+      = react "App", props: { id: "text-line-content" }, class: "my-4"

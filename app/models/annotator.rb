@@ -3,6 +3,7 @@ class Annotator < ApplicationRecord
     :recoverable, :rememberable, :validatable
 
   belongs_to :editor
+  has_many :annotations, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
 end
