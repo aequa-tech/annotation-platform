@@ -5,7 +5,7 @@ module Management
     before_action :set_corpus
 
     def index
-      @search = search_form_klass.new(search_params)
+      @search = search_form_klass.new({ corpus_id_eq: @corpus.id }.merge(search_params.to_h))
       @resources = @search.perform(params[:page], limit: params[:limit], csv: request.format == :csv)
     end
 
@@ -13,7 +13,31 @@ module Management
       @resource = klass.find(params[:id])
     end
 
+    def edit
+      @resource = klass.find(params[:id])
+    end
+
+    def update
+      @resource = klass.find(params[:id])
+      @resource.assign_attributes(post_params)
+      tasks_attributes = post_params[:task_annotator_ids].inject([]) do |acc, annotator_id|
+        acc << { annotator_id: annotator_id }
+      end
+
+      if @resource.save && @resource.tasks.insert_all(tasks_attributes, unique_by: :index_tasks_on_annotator_id_and_lines_set_id)
+        flash.now[:notice] = t("infold.flash.updated")
+        render :form
+      else
+        flash.now[:alert] = t("infold.flash.invalid")
+        render :form, status: :unprocessable_entity
+      end
+    end
+
     private
+
+    def post_params
+      params.require(:management_lines_set).permit(:title, task_annotator_ids: [])
+    end
 
     def search_params
       params[:search]&.permit(

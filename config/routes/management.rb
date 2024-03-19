@@ -20,7 +20,9 @@ namespace "management" do
   resources :taxonomies
   resources :corpora do
     resources :text_lines, only: [:index, :show]
-    resources :lines_sets, only: [:index, :show]
+    resources :lines_sets, only: [:index, :show, :edit, :update] do
+      resources :text_lines, only: [:index]
+    end
     member do
       get :edit_lines_sets_count
       patch :manage_sets

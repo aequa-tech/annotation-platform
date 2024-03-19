@@ -1,0 +1,43 @@
+.list-group.mb-3
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:id)
+      .col-md-9
+        = resource.id
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:title)
+      .col-md-9
+        = resource.title
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:created_at)
+      .col-md-9
+        = l(resource.created_at, format: :day_month_abbr)
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:updated_at)
+      .col-md-9
+        = l(resource.updated_at, format: :day_month_abbr)
+
+  .list-group-item
+    .row
+      .col-md-3
+        .text-muted.fw-bold = resource.class.human_attribute_name(:tasks)
+      .col-md-9
+        .table_wrapper.table-responsive.bg-secondary-lt data-index-page-target="resultTableWrapper"
+          table.table.table-hover.table-striped.mb-0.bg-white
+            thead data-index-page-target="thead"
+              tr
+                th
+                th Annotator
+            tbody id="tasks"
+              - resource.tasks.each_with_index do |task, index|
+                tr id="#{dom_id(task)}"
+                  td = "##{index + 1}"
+                  td
+                    = "#{task.annotator.fullname} - #{task.annotator.email}"

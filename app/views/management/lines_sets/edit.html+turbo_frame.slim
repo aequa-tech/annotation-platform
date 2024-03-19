@@ -1,0 +1,14 @@
+= turbo_frame_tag("modal_main") do
+  = simple_form_for(@resource, url: management_corpus_lines_set_path(@corpus, @resource)) do |form|
+    = render Admin::RemoteModalComponent.new(backdrop: :static) do |modal|
+      = modal.with_header do
+        ol.breadcrumb.text-dark
+          li.breadcrumb-item = @resource.class.name
+          li.breadcrumb-item.active = "#{t("infold.operation.edit")} ##{@resource.id}"
+      = modal.with_body do
+        .modal-body#form_body
+          = render "form", form: form
+      = modal.with_footer do
+        .modal-footer
+          button.btn.btn-secondary data-bs-dismiss="modal" type="button" = t("infold.operation.cancel")
+          = form.submit t("infold.operation.update"), class: "btn btn-primary"

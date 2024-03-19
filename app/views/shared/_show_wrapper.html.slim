@@ -11,10 +11,14 @@
       - if controller.respond_to?(:edit_lines_sets_count) && @resource.lines_sets.blank?
         = link_to t("infold.operation.edit_lines_sets_count"), [:edit_lines_sets_count, @resource],
           class: "btn btn-primary", data: { turbo_frame: "modal_main" }
-      - if controller.respond_to?(:edit)
-        = link_to t("infold.operation.edit"), [:edit, @resource],
+      - if @resource.is_a?(Management::LinesSet)
+        = link_to t("infold.operation.edit"), edit_management_corpus_lines_set_path(@corpus, @resource),
           class: "btn btn-primary", data: { turbo_frame: "modal_main" }
-      - if controller.respond_to?(:destroy)
-        = link_to t("infold.operation.delete"), [@resource],
-          class: "btn btn-danger ms-1", data: { turbo_confirm: t("infold.operation.confirm",
-          submit: t("infold.operation.delete")), turbo_method: :delete, turbo_frame: "_top" }
+      - else
+        - if controller.respond_to?(:edit)
+          = link_to t("infold.operation.edit"), [:edit, @resource],
+            class: "btn btn-primary", data: { turbo_frame: "modal_main" }
+        - if controller.respond_to?(:destroy)
+          = link_to t("infold.operation.delete"), [@resource],
+            class: "btn btn-danger ms-1", data: { turbo_confirm: t("infold.operation.confirm",
+            submit: t("infold.operation.delete")), turbo_method: :delete, turbo_frame: "_top" }

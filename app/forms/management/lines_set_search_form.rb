@@ -1,6 +1,6 @@
 module Management
   class LinesSetSearchForm < ::BaseSearchForm
-    set_condition :id_eq
+    set_condition :id_eq, :corpus_id_eq, :title_eq
 
     def perform(page = nil, limit: nil, csv: false)
       records = LinesSet.distinct

@@ -48,7 +48,7 @@ module Management
     def destroy
       @resource = klass.find(params[:id])
       if @resource.destroy
-        redirect_to [:management, klass.name.underscore.pluralize], status: :see_other, flash: { notice: t("infold.flash.destroyed") }
+        redirect_to [:management, klass.base_class.name.underscore.pluralize.to_sym], status: :see_other, flash: { notice: t("infold.flash.destroyed") }
       else
         flash.now[:alert] = t("flash.invalid_destroy")
         render :show, status: :unprocessable_entity
