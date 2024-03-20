@@ -9,7 +9,7 @@ const findId = (url) => {
     return null;
 };
 
-export const AnnotationsContext = createContext(null);
+export const RecogitoContext = createContext(null);
 export const TextLineContext = createContext(findId(window.location.pathname || ''));
 export const ApiUrl = `../api/v1/annotations/`;
 export const QueryParams = `?text_line_id=${findId(window.location.pathname) || ''}`;

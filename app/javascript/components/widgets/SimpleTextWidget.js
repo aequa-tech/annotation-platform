@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 
 SimpleTextWidget.propTypes = {
   annotation: PropTypes.object,
-  onAppendBody: PropTypes.func.isRequired,
-  onUpdateBody: PropTypes.func.isRequired
+  onAppendBody: PropTypes.func,
+  onUpdateBody: PropTypes.func
 };
 
 function SimpleTextWidget(props) {
