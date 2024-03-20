@@ -4,19 +4,20 @@
     header
       .row.g-1.align-items-center
         .col
-          h1.h4 Assigned Tasks
+          h1.h4 Text Lines
 
     section.p-0.container-fluid
       .list-divider.p-4
       // item
-      - @tasks.each do |task|
+      - @text_lines.each do |text_line|
         .px-1.py-3
           .row.g-4.g-lg-5.align-items-center
             .col
               .d-flex.align-items-center
-                = link_to task.title, task_text_lines_path(task), class: "d-block w-100 lh-sm fs-6 link-normal"
+                = link_to text_line.content.truncate(50),
+                  task_text_line_path(@task, text_line), class: "d-block w-100 lh-sm fs-6 link-normal"
             .col-auto
-              // task info
+              // text_line info
               .d-inline-block
                 .row.text-center
 
