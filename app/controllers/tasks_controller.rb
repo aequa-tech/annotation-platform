@@ -2,9 +2,6 @@
 
 class TasksController < ApplicationController
   def assigned
-    @tasks = TextLine.all
-  end
-
-  def completed
+    @tasks = current_annotator.tasks
   end
 end
