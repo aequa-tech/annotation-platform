@@ -4,7 +4,7 @@
     header
       .row.g-1.align-items-center
         .col
-          h1.h4 Text Lines
+          h1.h4 = TextLine.model_name.human.pluralize
 
     section.p-0.container-fluid
       .list-divider.p-4
@@ -14,8 +14,8 @@
           .row.g-4.g-lg-5.align-items-center
             .col
               .d-flex.align-items-center
-                = link_to text_line.content.truncate(50),
-                  task_text_line_path(@task, text_line), class: "d-block w-100 lh-sm fs-6 link-normal"
+                = link_to text_line.content,
+                  task_text_line_path(@task, text_line), class: "d-block w-100 lh-sm fs-6 link-normal text-truncate"
             .col-auto
               // text_line info
               .d-inline-block
