@@ -9,7 +9,7 @@ class ImportCorpus < ApplicationService
 
   def call
     ActiveStorage::Blob.find_by(key: blob_key).open do |temp_file|
-      total_count = `wc -l #{temp_file.path}`.split.first.to_i
+      total_count = File.foreach(temp_file.path).count
 
       CSV.foreach(temp_file, headers: true).each.with_index(1) do |row, row_index|
         next if row["content"].blank?
