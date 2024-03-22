@@ -58,3 +58,15 @@ async function UpdateAnnotation(annotation){
 }
 
 export { UpdateAnnotation }
+
+async function GetTaxonomies(){
+  try {
+    const response = await fetch("../api/v1/taxonomies/" + QueryParams);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+export { GetTaxonomies }

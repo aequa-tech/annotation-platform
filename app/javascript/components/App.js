@@ -3,7 +3,7 @@ import { Recogito } from "@recogito/recogito-js/src/index";
 import { CreateAnnotation, DeleteAnnotation, UpdateAnnotation } from "./services/AnnotationAPI";
 import { RecogitoContext, TextLineContext, ApiUrl, QueryParams } from "./services/AnnotationContext";
 import SimpleTextWidget from "./widgets/SimpleTextWidget";
-import SemanticMultiSelectWidget from "./widgets/SemanticMultiSelectWidget";
+import CustomTagWidget from "./widgets/CustomTagWidget";
 import Sidebar from "./Sidebar";
 
 
@@ -21,8 +21,7 @@ function App(props) {
     const config = {
       widgets: [
         { widget: SimpleTextWidget },
-        { widget: SemanticMultiSelectWidget },
-        { widget: "TAG", vocabulary: ['Tag 1', 'Tag 2', 'Tag 3'] }
+        { widget: CustomTagWidget }
       ],
       readOnly: false,
       content: props.id,

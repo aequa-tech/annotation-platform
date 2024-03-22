@@ -6,5 +6,6 @@ namespace :api do
       delete :destroy, on: :collection
       put :update, on: :collection
     end
+    resources :taxonomies, only: [:index]
   end
 end
