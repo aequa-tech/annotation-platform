@@ -55,7 +55,7 @@ module Management
       return unless @resource.input_file.attached?
 
       blob_key = @resource.input_file.key
-      ImportCsvJob.perform_later(blob_key, @resource.id)
+      ImportCsvJob.perform_later(current_editor.id, blob_key, @resource.id)
     end
 
     def lines_sets_attributes

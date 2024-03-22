@@ -13,3 +13,4 @@ en:
   views:
     corpus:
       no_data: No imported data
+      show_import: Show import
