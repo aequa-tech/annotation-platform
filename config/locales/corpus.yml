@@ -14,3 +14,4 @@ en:
     corpus:
       no_data: No imported data
       show_import: Show import
+      progress_indicator: "%{progress}% completed"
