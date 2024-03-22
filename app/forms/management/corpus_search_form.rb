@@ -1,6 +1,6 @@
 module Management
   class CorpusSearchForm < ::BaseSearchForm
-    set_condition :id_eq
+    set_condition :id_eq, :title_full_like, :editor_id_eq
 
     def perform(page = nil, limit: nil, csv: false)
       records = Corpus.distinct

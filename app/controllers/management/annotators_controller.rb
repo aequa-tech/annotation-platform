@@ -11,10 +11,12 @@ module Management
     end
 
     def search_params
-      params[:search]&.permit(
-        :email_eq,
-        :sort_field,
-        :sort_kind
+      { editor_id_eq: current_editor.id }.merge(
+        params[:search]&.permit(
+          :email_eq,
+          :sort_field,
+          :sort_kind
+        ).to_h
       )
     end
 
