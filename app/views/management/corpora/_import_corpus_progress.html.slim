@@ -1,0 +1,5 @@
+#import_corpus_task
+  .progress
+    .progress-bar.progress-bar-striped.active[role="progressbar"
+      aria-valuemin="0" aria-valuemax="100" aria-valuenow="#{progress}" style="width: #{progress}%;"]
+      span.visually-hidden = t("views.corpus.progress_indicator", progress: progress)
