@@ -7,6 +7,7 @@ class ImportCsvJob < ActiveJob::Base
     corpus = Corpus.find_by(id: corpus_id)
     return if corpus.nil?
 
-    ImportCorpus.call(current_editor_id, blob_key, corpus)
+    response = ImportCorpus.call(current_editor_id, blob_key, corpus)
+    raise response if [:failure, :partial_success].include? response
   end
 end

@@ -1,16 +1,18 @@
 class ImportCorpus < ApplicationService
-  attr_reader :blob_key, :corpus, :current_editor
+  attr_reader :blob, :corpus, :current_editor
 
   def initialize(current_editor_id, blob_key, corpus)
-    @blob_key = blob_key
     @corpus = corpus
     @current_editor = Editor.find_by(id: current_editor_id)
+    @blob = ActiveStorage::Blob.find_by(key: blob_key)
   end
 
   def call
-    ActiveStorage::Blob.find_by(key: blob_key).open do |temp_file|
+    return :failure if blob.blank? || corpus.blank? || current_editor.blank?
+
+    blob.open do |temp_file|
       total_count = File.foreach(temp_file.path).count
-      break if total_count.zero?
+      return :partial_success if total_count.zero?
 
       CSV.foreach(temp_file, headers: true).each.with_index(1) do |row, row_index|
         next if row["content"].blank?
@@ -26,6 +28,8 @@ class ImportCorpus < ApplicationService
 
       stream("management/corpora/show_imported_lines_path", { resource: corpus })
     end
+
+    :success
   end
 
   private
