@@ -2,7 +2,11 @@
 
 require "sidekiq/web"
 
-devise_for :admin_users, skip: :all
+devise_for :admin_users, only: :passwords,
+  controllers: { passwords: "admin/admin_users/passwords" },
+  path: "admin/admin_users",
+  class_name: "AdminUser"
+
 devise_scope :admin_user do
   get "admin/login" => "admin/admin_users/sessions#new", :as => :new_admin_user_session
   post "admin/login" => "admin/admin_users/sessions#create", :as => :admin_user_session

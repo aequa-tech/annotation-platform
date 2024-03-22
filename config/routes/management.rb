@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-devise_for :editors, skip: :all
+devise_for :editors, only: :passwords,
+  controllers: { passwords: "management/editors/passwords" },
+  path: "management/editors",
+  class_name: "Editor"
+
 devise_scope :editor do
   get "management/login" => "management/editors/sessions#new", :as => :new_editor_session
   post "management/login" => "management/editors/sessions#create", :as => :editor_session

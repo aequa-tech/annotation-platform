@@ -16,3 +16,5 @@
             %span.form-check-label Remember Me
         .form-footer
           = form.submit 'Login', class: 'btn btn-primary w-100'
+          .col-12.col-md-6.mt-4.text-align-end.text-center-xs
+            = link_to "forgot your password?", new_editor_password_path(resource_name), class: "px-0 link-normal"
