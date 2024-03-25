@@ -9,6 +9,8 @@ gem "puma", ">= 5.0"
 gem "redis", ">= 4.0.1" # Use Redis adapter to run Action Cable in production
 gem "sidekiq"
 
+gem "pundit"
+
 gem "infold", require: false
 # Gems required by infold:
 gem "active_decorator"
