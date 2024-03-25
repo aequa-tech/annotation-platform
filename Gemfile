@@ -58,7 +58,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "fasterer"
   gem "debug", platforms: %i[mri windows]
-  gem "rspec-rails", "~> 6.1.0"
+  gem "rspec-rails", "~> 6.1.2"
   gem "rubocop", require: false
   gem "rubocop-rspec", require: false
   gem "shoulda-matchers", require: false
