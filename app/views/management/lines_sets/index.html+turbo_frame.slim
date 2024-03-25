@@ -4,7 +4,7 @@
     = modal.with_body do
       .modal-body
         .mb-3
-          = form_with model: Management::LineSearchFormsSet.new, url: [:management, @corpus, :lines_sets], method: :get,
+          = form_with model: Management::LineSearchFormsSet.new, url: [@corpus, :lines_sets], method: :get,
             scope: "search", data: { turbo_frame: "association_search_body" } do |form|
             .row.gy-3.align-items-end
               .col-lg-6.col-xl-4

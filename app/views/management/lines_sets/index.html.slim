@@ -1,5 +1,5 @@
 = content_for :search_form do
-  = form_with model: @search, url: [:management, @corpus, :lines_sets],
+  = form_with model: @search, url: [@corpus, :lines_sets],
     method: :get, scope: "search",
     data: { index_page_target: "searchForm" } do |form|
     = form.hidden_field :sort_field, data: { index_page_target: "sortField" }
@@ -12,7 +12,7 @@
       .col-6.order-2.d-grid
         = form.submit t("infold.operation.search"), class: "btn btn-primary"
       .col-6.d-grid
-        = link_to t("infold.operation.clear"), [:management, @corpus, :lines_sets], class: "btn btn-secondary"
+        = link_to t("infold.operation.clear"), [@corpus, :lines_sets], class: "btn btn-secondary"
 
 = content_for :results_table_columns do
   th = render Admin::SortableComponent.new(@search,
