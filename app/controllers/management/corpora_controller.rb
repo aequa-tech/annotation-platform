@@ -34,13 +34,13 @@ module Management
     end
 
     def search_params
-      params[:search]&.permit(
+      { editor_id_eq: current_editor.id }.merge(params[:search]&.permit(
         :id_eq,
         :title_full_like,
         :editor_id_eq,
         :sort_field,
         :sort_kind
-      )
+      ).to_h)
     end
 
     def klass

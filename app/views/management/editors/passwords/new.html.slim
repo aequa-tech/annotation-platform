@@ -1,0 +1,17 @@
+.page style="padding-top: 5rem"
+  .container-tight
+    = simple_form_for(resource, as: resource_name, url: editor_password_path, html: { method: :post, class: "card card-md" }) do |f|
+      = f.error_notification
+
+      .card-body
+        .card-title.text-center.mb-4
+          h1 Management Portal
+        .mb-3
+          .form-inputs
+            = f.input :email,
+                      required: true,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" }
+        .form-footer
+          .form-actions
+            = f.button :submit, "Send me reset password instructions", class: "btn btn-primary w-100"

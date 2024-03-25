@@ -22,15 +22,14 @@ aside.management-editor.navbar.navbar-vertical.navbar-expand-sm.navbar-dark.bg-d
 
       hr.text-white
 
-      .dropdown
+      .dropdown.mb-4
         li.nav-item.dropdown
           = link_to "", class: "nav-item dropdown-toggle text-white align-items-center",
                         id: "header_current_user",
                         role: "button", data: { bs_toggle: "dropdown" } do
-            strong = current_editor.email
+            strong.px-2 = current_editor.email
 
           ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow{ aria-labelledby="header_current_user" }
             li = link_to "Edit account", edit_editor_registration_path, class: "dropdown-item text-white"
-            li.dropdown-divider
             li = button_to "Logout", destroy_editor_session_path, class: "dropdown-item text-white", method: :delete
           .dropdown-divider

@@ -2,7 +2,7 @@
 
 module Management
   class Editors::RegistrationsController < Devise::RegistrationsController
-    layout "admin"
+    layout "management"
 
     # before_action :configure_sign_up_params, only: [:create]
     # before_action :configure_account_update_params, only: [:update]
@@ -18,14 +18,14 @@ module Management
     end
 
     # GET /resource/edit
-    # def edit
-    #   super
-    # end
+    def edit
+      super
+    end
 
     # PUT /resource
-    # def update
-    #   super
-    # end
+    def update
+      super
+    end
 
     # DELETE /resource
     def destroy

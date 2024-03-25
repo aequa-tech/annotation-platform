@@ -1,6 +1,6 @@
 module Management
   class AnnotatorSearchForm < ::BaseSearchForm
-    set_condition :id_eq, :fullname_full_like, :email_full_like
+    set_condition :id_eq, :fullname_full_like, :email_full_like, :editor_id_eq
 
     def perform(page = nil, limit: nil, csv: false)
       records = Annotator.distinct

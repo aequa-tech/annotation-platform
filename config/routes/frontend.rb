@@ -8,13 +8,16 @@ devise_scope :annotator do
   delete :logout, to: "annotators/sessions#destroy", as: :destroy_annotator_session
 end
 
-authenticated :annotator do
-  root to: "tasks#assigned", as: :root
+scope module: :annotators do
+  authenticated :annotator do
+    root to: "tasks#assigned", as: :root
+  end
+
+  devise_scope :annotator do
+    root to: "sessions#new", as: :unauthenticated_root
+  end
+
   resources :tasks, only: [:assigned] do
     resources :text_lines, only: [:index, :show]
   end
-end
-
-devise_scope :annotator do
-  root to: "annotators/sessions#new", as: :unauthenticated_root
 end

@@ -17,8 +17,6 @@
 = content_for :results_table_columns do
   th = render Admin::SortableComponent.new(@search, :id, label: Management::Corpus.human_attribute_name(:id))
   th = render Admin::SortableComponent.new(@search, :title, label: Management::Corpus.human_attribute_name(:title))
-  th = render Admin::SortableComponent.new(@search, :editor_id,
-    label: Management::Corpus.human_attribute_name(:editor_id))
   th = render Admin::SortableComponent.new(@search, :created_at,
     label: Management::Corpus.human_attribute_name(:created_at))
   th = render Admin::SortableComponent.new(@search, :updated_at,

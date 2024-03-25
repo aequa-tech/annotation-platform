@@ -37,6 +37,7 @@
               %th= render Admin::SortableComponent.new(@search, :id, label: Management::Annotator.human_attribute_name(:id))
               %th= render Admin::SortableComponent.new(@search, :fullname, label: Management::Annotator.human_attribute_name(:fullname))
               %th= render Admin::SortableComponent.new(@search, :email, label: Management::Annotator.human_attribute_name(:email))
+              %th= render Admin::SortableComponent.new(@search, :editor, label: Management::Annotator.human_attribute_name(:editor))
               %th= render Admin::SortableComponent.new(@search, :created_at, label: Management::Annotator.human_attribute_name(:created_at))
               %th= render Admin::SortableComponent.new(@search, :updated_at, label: Management::Annotator.human_attribute_name(:updated_at))
               %th.icon_cell
