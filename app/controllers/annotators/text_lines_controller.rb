@@ -5,10 +5,12 @@ module Annotators
     before_action :set_task, only: %i[index show]
 
     def show
-      @text_line = ::TextLine.find(params[:id])
+      authorize @task, :assigned?
+      @text_line = @task.text_lines.find(params[:id])
     end
 
     def index
+      authorize @task, :assigned?
       @text_lines = @task.text_lines.includes(:tasks).order(position: :asc)
     end
 

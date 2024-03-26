@@ -3,7 +3,7 @@
 module Annotators
   class TasksController < ApplicationController
     def assigned
-      @tasks = current_annotator.tasks
+      @tasks = policy_scope(Task)
     end
   end
 end
