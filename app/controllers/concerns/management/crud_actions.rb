@@ -74,7 +74,7 @@ module Management
           if request.variant == [:turbo_frame]
             render(:forbidden, status: :forbidden, layout: "management", locals: { flash: flash_message })
           else
-            redirect_to(request.referer || root_path)
+            redirect_to(request.referer || root_path, alert: flash_message)
           end
         end
       end
