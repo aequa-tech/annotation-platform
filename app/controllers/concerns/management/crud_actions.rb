@@ -4,13 +4,19 @@ module Management
   module CrudActions
     extend ActiveSupport::Concern
 
+    included do
+      rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+    end
+
     def index
       @search = search_form_klass.new(search_params)
-      @resources = @search.perform(params[:page], limit: params[:limit], csv: request.format == :csv)
+      scope = policy_scope(klass)
+      @resources = @search.perform(scope, params[:page], limit: params[:limit], csv: request.format == :csv)
     end
 
     def show
       @resource = klass.find(params[:id])
+      authorize @resource
     end
 
     def new
@@ -31,6 +37,7 @@ module Management
 
     def edit
       @resource = klass.find(params[:id])
+      authorize @resource
     end
 
     def update
@@ -47,11 +54,29 @@ module Management
 
     def destroy
       @resource = klass.find(params[:id])
+      authorize @resource
+
       if @resource.destroy
         redirect_to [:management, klass.base_class.name.underscore.pluralize.to_sym], status: :see_other, flash: { notice: t("infold.flash.destroyed") }
       else
         flash.now[:alert] = t("flash.invalid_destroy")
         render :show, status: :unprocessable_entity
+      end
+    end
+
+    private
+
+    def user_not_authorized
+      flash_message = t("pundit.not_authorized_error")
+
+      respond_to do |format|
+        format.html do
+          if request.variant == [:turbo_frame]
+            render(:forbidden, status: :forbidden, layout: "management", locals: { flash: flash_message })
+          else
+            redirect_to(request.referer || root_path)
+          end
+        end
       end
     end
   end
