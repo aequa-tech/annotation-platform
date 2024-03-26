@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState, useRef } from "react";
 import { Recogito } from "@recogito/recogito-js/src/index";
 import { CreateAnnotation, DeleteAnnotation, UpdateAnnotation } from "./services/AnnotationAPI";
-import { RecogitoContext, TextLineContext, ApiUrl, QueryParams } from "./services/AnnotationContext";
+import { RecogitoContext, TextLineContext, ApiUrl } from "./services/AnnotationContext";
 import SimpleTextWidget from "./widgets/SimpleTextWidget";
 import CustomTagWidget from "./widgets/CustomTagWidget";
 import Sidebar from "./Sidebar";
@@ -28,7 +28,7 @@ function App(props) {
     };
     annotoriousRef.current = new Recogito(config);;
 
-    annotoriousRef.current.loadAnnotations(ApiUrl + QueryParams).then((list) => {
+    annotoriousRef.current.loadAnnotations(ApiUrl).then((list) => {
       setAnnotations(list);
     });
 

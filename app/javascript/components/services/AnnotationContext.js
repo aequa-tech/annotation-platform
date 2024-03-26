@@ -1,15 +1,10 @@
 import { createContext } from 'react';
 
-const expression = /^\/text_lines\/(\d+)/i
-const findId = (url) => {
-    const match = expression.exec(url);
-    if (match) {
-        return match[1];
-    }
-    return null;
-};
+const expression = /^\/tasks\/(\d+)\/text_lines\/(\d+)/i
 
 export const RecogitoContext = createContext(null);
-export const TextLineContext = createContext(findId(window.location.pathname || ''));
-export const ApiUrl = `../api/v1/annotations/`;
-export const QueryParams = `?text_line_id=${findId(window.location.pathname) || ''}`;
+
+export const TaskContext = createContext(expression.exec(window.location.pathname)[1]);
+export const TextLineContext = createContext(expression.exec(window.location.pathname)[2]);
+
+export const ApiUrl = `/api/v1/tasks/${TaskContext._currentValue}/text_lines/${TextLineContext._currentValue}/annotations/`;
