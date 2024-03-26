@@ -8,6 +8,8 @@ module Management
 
     def edit_lines_sets_count
       @resource = Corpus.find(params[:id])
+
+      authorize @resource
     end
 
     def manage_sets

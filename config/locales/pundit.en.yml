@@ -1,0 +1,3 @@
+en:
+  pundit:
+    not_authorized_error: You are not authorized to perform this action.
