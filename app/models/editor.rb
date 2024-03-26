@@ -3,4 +3,5 @@ class Editor < ApplicationRecord
     :recoverable, :rememberable, :validatable
 
   has_many :corpora, dependent: :destroy
+  has_many :annotators, dependent: :destroy
 end
