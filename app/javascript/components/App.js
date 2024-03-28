@@ -1,54 +1,64 @@
-import { useEffect, useState } from "react";
-import { Recogito } from "@recogito/recogito-js";
+import { useContext, useEffect, useState, useRef } from "react";
+import { Recogito } from "@recogito/recogito-js/src/index";
 import { CreateAnnotation, DeleteAnnotation, UpdateAnnotation } from "./services/AnnotationAPI";
-import { AnnotationsContext, TextLineContext, ApiUrl, QueryParams } from "./services/AnnotationContext";
-import TaxonomySelectorWidget from "./widgets/TaxonomySelectorWidget";
+import { RecogitoContext, TextLineContext, ApiUrl } from "./services/AnnotationContext";
+import SimpleTextWidget from "./widgets/SimpleTextWidget";
+import CustomTagWidget from "./widgets/CustomTagWidget";
+import Sidebar from "./Sidebar";
+
 
 function App(props) {
-  let annotorious = null;
-  const [annotations, setAnnotations] = useState({});
+  const textLineId = useContext(TextLineContext);
+  const [annotations, setAnnotations] = useState([]);
+  const annotoriousRef = useRef(null);
+
+  const deleteAnnotationFromList = (annotation) => {
+    annotoriousRef.current.removeAnnotation(annotation);
+    annotoriousRef.current.handleAnnotationDeleted(annotation);
+  };
 
   useEffect(() => {
     const config = {
       widgets: [
-        { widget: "COMMENT" },
-        { widget: TaxonomySelectorWidget },
+        { widget: SimpleTextWidget },
+        { widget: CustomTagWidget }
       ],
       readOnly: false,
       content: props.id,
     };
-    annotorious = new Recogito(config);
+    annotoriousRef.current = new Recogito(config);;
 
-    annotorious.loadAnnotations(ApiUrl + QueryParams).then((list) => {
-      console.log("loaded annotations", list);
-      setAnnotations(list); // TODO: not working
+    annotoriousRef.current.loadAnnotations(ApiUrl).then((list) => {
+      setAnnotations(list);
     });
 
-    annotorious.on("createAnnotation", (annotation) => {
+    annotoriousRef.current.on("createAnnotation", (annotation) => {
       CreateAnnotation(annotation);
+      setAnnotations(annotoriousRef.current.getAnnotations());
     });
 
-    annotorious.on("updateAnnotation", (annotation) => {
+    annotoriousRef.current.on("updateAnnotation", (annotation) => {
       UpdateAnnotation(annotation);
+      setAnnotations(annotoriousRef.current.getAnnotations());
     });
 
-    annotorious.on("deleteAnnotation", (annotation) => {
+    annotoriousRef.current.on("deleteAnnotation", (annotation) => {
       DeleteAnnotation(annotation);
+      setAnnotations(annotoriousRef.current.getAnnotations());
     });
 
-    annotorious.setAuthInfo({
+    annotoriousRef.current.setAuthInfo({
       // used every time the user creates/updates an annotation
       id: "user-id",
       displayName: "User Name"
     });
+  }, [props.id]);
 
-  }, []);
-
-  return(null);
   return(
-    <TextLineContext.Provider>
-      <AnnotationsContext.Provider value={{annotations, setAnnotations}}>
-      </AnnotationsContext.Provider>
+    <TextLineContext.Provider value={textLineId}>
+      <RecogitoContext.Provider value={{annotations, deleteAnnotationFromList}}>
+        <Sidebar />
+      </RecogitoContext.Provider>
     </TextLineContext.Provider>
   );
 }

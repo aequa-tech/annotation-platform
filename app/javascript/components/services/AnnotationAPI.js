@@ -1,9 +1,9 @@
-import { ApiUrl, QueryParams } from "./AnnotationContext";
+import { ApiUrl, TaskContext } from "./AnnotationContext";
 
 async function CreateAnnotation(annotation){
 
   try {
-    const response = await fetch(ApiUrl + QueryParams, {
+    const response = await fetch(ApiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ export { CreateAnnotation }
 
 async function DeleteAnnotation(annotation){
   try {
-    const response = await fetch(ApiUrl + QueryParams, {
+    const response = await fetch(ApiUrl, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export { DeleteAnnotation }
 
 async function UpdateAnnotation(annotation){
   try {
-    const response = await fetch(ApiUrl + QueryParams, {
+    const response = await fetch(ApiUrl, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -58,3 +58,15 @@ async function UpdateAnnotation(annotation){
 }
 
 export { UpdateAnnotation }
+
+async function GetTaxonomies(){
+  try {
+    const response = await fetch(`/api/v1/tasks/${TaskContext._currentValue}/taxonomies/`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+export { GetTaxonomies }

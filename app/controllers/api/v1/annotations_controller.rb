@@ -1,9 +1,12 @@
 module Api
   module V1
     class AnnotationsController < ApplicationController
+      prepend_before_action :task
       before_action :text_line
 
       def create
+        authorize task, :assigned?
+
         @annotation = Annotation.new(
           content: annotation_params,
           text_line: text_line,
@@ -18,12 +21,16 @@ module Api
       end
 
       def index
+        authorize task, :assigned?
+
         @annotations = current_annotator.annotations.where(text_line_id: text_line).pluck(:content)
 
         render json: @annotations
       end
 
       def update
+        authorize task, :assigned?
+
         @annotation = current_annotator.annotations
           .where(text_line_id: text_line.id)
           .find_by("content @> ?", { id: annotation_params[:id] }.to_json)
@@ -36,6 +43,8 @@ module Api
       end
 
       def destroy
+        authorize task, :assigned?
+
         @annotation = current_annotator.annotations
           .where(text_line_id: text_line.id)
           .find_by("content @> ?", { id: annotation_params[:id] }.to_json)
@@ -54,7 +63,11 @@ module Api
       end
 
       def text_line
-        @text_line = TextLine.find(params[:text_line_id])
+        @text_line ||= task.text_lines.find(params[:text_line_id])
+      end
+
+      def task
+        @task ||= Task.find(params[:task_id])
       end
     end
   end
