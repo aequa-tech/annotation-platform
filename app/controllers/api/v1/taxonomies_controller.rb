@@ -4,6 +4,8 @@ module Api
       before_action :task, only: %i[index]
 
       def index
+        authorize task, :assigned?
+
         @taxonomies = task.corpus.taxonomies
 
         render json: @taxonomies
