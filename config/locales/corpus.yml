@@ -15,3 +15,4 @@ en:
       no_data: No imported data
       show_import: Show import
       progress_indicator: "%{progress}% completed"
+      lines_sets_count_desc: Specify how many text lines per set you want. The system will create as many sets as needed to cover all text lines.

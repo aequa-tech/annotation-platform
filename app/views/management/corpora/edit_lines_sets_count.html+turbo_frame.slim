@@ -10,6 +10,7 @@
           .list-group.mb-3
             .list-group-item
               = render Admin::FieldsetComponent.new(form, :lines_sets_count, :number)
+              p.mt-4.text-muted = t("views.corpus.lines_sets_count_desc")
 
       = modal.with_footer do
         .modal-footer
