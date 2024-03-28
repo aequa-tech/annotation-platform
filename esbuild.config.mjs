@@ -9,7 +9,7 @@ const args = process.argv.slice(2);
 const isWatchMode = args.includes('--watch');
 
 const context = await esbuild.context({
-  entryPoints: ["./app/javascript/application.js"],
+  entryPoints: ["./app/javascript/application.js", "./app/javascript/admin.js"],
   outdir: "./app/assets/builds",
   color: true,
   minify: optimize,
