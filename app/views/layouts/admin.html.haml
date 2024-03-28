@@ -14,7 +14,7 @@
     %link{:href => "https://npmcdn.com/flatpickr/dist/themes/dark.css", :rel => "stylesheet", :type => "text/css"}/
     %script{:src => "https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js"}
     %script{:src => "https://cdn.jsdelivr.net/npm/flatpickr"}
-    = javascript_include_tag "admin", "data-turbo-track": "reload", defer: true
+    = javascript_include_tag "admin", "data-turbo-track": "reload", defer: true # css included in admin.js
   %body{:class => "#{'border-top-wide border-primary' unless admin_user_signed_in?}"}
     #admin_wrapper
       - if admin_user_signed_in?
