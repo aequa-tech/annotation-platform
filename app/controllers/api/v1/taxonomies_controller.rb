@@ -14,7 +14,7 @@ module Api
       private
 
       def task
-        @task = TextLine.find(params[:task_id])
+        @task = Task.find(params[:task_id])
       end
     end
   end

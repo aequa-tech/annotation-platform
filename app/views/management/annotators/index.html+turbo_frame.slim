@@ -23,6 +23,7 @@
                   tr
                     th = Management::Annotator.human_attribute_name(:id)
                     th = Management::Annotator.human_attribute_name(:fullname)
+                    th
                 tbody
                   - @annotators.each do |annotator|
                     tr
