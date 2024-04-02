@@ -26,7 +26,7 @@ function SimpleTextWidget(props) {
     <div className="r6o-widget comment editable">
       <textarea
         className="r6o-editable-text"
-        defaultValue={props.annotation?.body[0]?.value || ""}
+        defaultValue={currentCommentBody ? currentCommentBody["value"] : ""}
         rows="5"
         placeholder="Add a comment..."
         disabled={ false }

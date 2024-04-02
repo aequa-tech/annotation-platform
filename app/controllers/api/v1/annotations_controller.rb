@@ -10,7 +10,8 @@ module Api
         @annotation = Annotation.new(
           content: annotation_params,
           text_line: text_line,
-          annotator: current_annotator
+          annotator: current_annotator,
+          task: task
         )
 
         if @annotation.save
