@@ -10,6 +10,7 @@ namespace :api do
         end
       end
       resources :taxonomies, only: [:index]
+      resources :text_lines, only: [:show]
     end
   end
 end

@@ -1,5 +1,24 @@
 import { ApiUrl, TaskContext } from "./AnnotationContext";
 
+async function GetTexline(texlineId) {
+  try {
+    const response = await fetch(`/api/v1/tasks/${TaskContext._currentValue}/text_lines/${texlineId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // 'Authorization': 'Token ' + window.localStorage.getItem("auth_token")
+      },
+    });
+    const data = await response.json();
+    console.log('Success:', data);
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+export { GetTexline }
+
 async function CreateAnnotation(annotation){
 
   try {
