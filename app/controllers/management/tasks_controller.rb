@@ -6,7 +6,7 @@ module Management
     before_action :task, only: :show
 
     def show
-      render
+      render :show
     end
 
     private
