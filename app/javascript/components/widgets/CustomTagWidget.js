@@ -27,7 +27,7 @@ function CustomTagWidget(props) {
         onDelete(tag)
       } else {
         props.onAppendBody({
-          type: "TextualBody",
+          type: "TaxonomyBody",
           purpose: "tagging",
           value: tag
         });
@@ -71,12 +71,15 @@ function CustomTagWidget(props) {
           )}
         </ul>
       }
-      <select multiple value={selectedTags} onChange={handleSelectChange}>
-        {tags.map(tag => (
-          <option key={tag.id} value={tag.title}>{tag.title}</option>
-        ))}
-      </select>
-  </div>
+      { tags.length > 0 ?
+        <select multiple value={selectedTags} onChange={handleSelectChange}>
+          {tags.map(tag => (
+            <option key={tag.id} value={tag.title}>{tag.title}</option>
+          ))}
+        </select>
+        : null
+      }
+    </div>
   );
 }
 
