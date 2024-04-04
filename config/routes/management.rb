@@ -26,6 +26,9 @@ namespace "management" do
     resources :text_lines, only: [:index, :show]
     resources :lines_sets, only: [:index, :show, :edit, :update] do
       resources :text_lines, only: [:index]
+      constraints(lambda { |req| req.format == :json }) do
+        resources :tasks, only: [:show]
+      end
     end
     member do
       get :edit_lines_sets_count
