@@ -5,9 +5,7 @@ module Api
 
       def show
         authorize task, :assigned?
-
-        @text_line = task.text_lines.find(params[:id])
-
+        @text_line = task.text_lines.find_by(id: params[:id])
         render :show
       end
 
