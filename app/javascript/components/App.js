@@ -5,17 +5,23 @@ import { RecogitoContext, TextLineContext, ApiUrl } from "./services/AnnotationC
 import SimpleTextWidget from "./widgets/SimpleTextWidget";
 import CustomTagWidget from "./widgets/CustomTagWidget";
 import Sidebar from "./Sidebar";
+import TextLine from "./TextLine";
 
 
-function App(props) {
+function App() {
   const textLineId = useContext(TextLineContext);
   const [annotations, setAnnotations] = useState([]);
+  const [textLineLoaded, setTextLineLoaded] = useState(false);
   const annotoriousRef = useRef(null);
 
   const deleteAnnotationFromList = (annotation) => {
     annotoriousRef.current.removeAnnotation(annotation);
     annotoriousRef.current.handleAnnotationDeleted(annotation);
   };
+
+  const selectedAnnotationEvent = (annotation) => {
+    annotoriousRef.current.selectAnnotation(annotation.id);
+  }
 
   useEffect(() => {
     const config = {
@@ -24,9 +30,9 @@ function App(props) {
         { widget: CustomTagWidget }
       ],
       readOnly: false,
-      content: props.id,
+      content: "text-line-content",
     };
-    annotoriousRef.current = new Recogito(config);;
+    annotoriousRef.current = new Recogito(config);
 
     annotoriousRef.current.loadAnnotations(ApiUrl).then((list) => {
       setAnnotations(list);
@@ -52,12 +58,13 @@ function App(props) {
       id: "user-id",
       displayName: "User Name"
     });
-  }, [props.id]);
+  }, [textLineLoaded]);
 
   return(
     <TextLineContext.Provider value={textLineId}>
       <RecogitoContext.Provider value={{annotations, deleteAnnotationFromList}}>
-        <Sidebar />
+        <TextLine onLoaded={() => setTextLineLoaded(true)} />
+        <Sidebar onSelected={selectedAnnotationEvent}/>
       </RecogitoContext.Provider>
     </TextLineContext.Provider>
   );
