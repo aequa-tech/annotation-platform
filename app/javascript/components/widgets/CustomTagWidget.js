@@ -9,7 +9,6 @@ import './CustomTagWidget.scss';
 
 function CustomTagWidget(props) {
   const [tags, setTags] = useState([]);
-  const elem = useRef();
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
   const [ loadState, setLoadState ] = useState('LOADED'); // LOADING, LOADED, FAILED
 

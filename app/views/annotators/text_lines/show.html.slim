@@ -1,10 +1,4 @@
 .container
   main#middle.flex-fill.mx-auto
-
-    / header
-    /   .row.g-1.align-items-center
-    /     .col
-    /       h1.h4 Annotate
-
     section.p-0.container-fluid
-      = react "App", class: "my-4 d-flex flex-fill justify-content-between"
+      = react "App", class: "my-4 d-flex flex-fill justify-content-between", props: { textContent: @text_line.content }

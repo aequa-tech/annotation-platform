@@ -1,37 +1,43 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useState, useRef, useMemo } from "react";
 import { Recogito } from "@recogito/recogito-js/src/index";
 import { CreateAnnotation, DeleteAnnotation, UpdateAnnotation } from "./services/AnnotationAPI";
-import { RecogitoContext, TextLineContext, ApiUrl } from "./services/AnnotationContext";
+import { RecogitoContext, TextLineContext, TextContentContext, ApiUrl } from "./services/AnnotationContext";
 import SimpleTextWidget from "./widgets/SimpleTextWidget";
 import CustomTagWidget from "./widgets/CustomTagWidget";
 import Sidebar from "./Sidebar";
 import TextLine from "./TextLine";
+import PropTypes from "prop-types";
 
 
-function App() {
+function App({ textContent }) {
   const textLineId = useContext(TextLineContext);
   const [annotations, setAnnotations] = useState([]);
-  const [textLineLoaded, setTextLineLoaded] = useState(false);
+
   const annotoriousRef = useRef(null);
+  const textEl = useRef(null);
 
   const deleteAnnotationFromList = (annotation) => {
     annotoriousRef.current.removeAnnotation(annotation);
     annotoriousRef.current.handleAnnotationDeleted(annotation);
   };
+  const recogitoValue = useMemo(() => (
+    {annotations, deleteAnnotationFromList}), [annotations, deleteAnnotationFromList]
+  );
 
   const selectedAnnotationEvent = (annotation) => {
     annotoriousRef.current.selectAnnotation(annotation.id);
   }
 
-  useEffect(() => {
+  const initRecogito = () => {
     const config = {
       widgets: [
         { widget: SimpleTextWidget },
         { widget: CustomTagWidget }
       ],
       readOnly: false,
-      content: "text-line-content",
+      content: textEl.current,
     };
+
     annotoriousRef.current = new Recogito(config);
 
     annotoriousRef.current.loadAnnotations(ApiUrl).then((list) => {
@@ -58,16 +64,22 @@ function App() {
       id: "user-id",
       displayName: "User Name"
     });
-  }, [textLineLoaded]);
+  }
 
   return(
-    <TextLineContext.Provider value={textLineId}>
-      <RecogitoContext.Provider value={{annotations, deleteAnnotationFromList}}>
-        <TextLine onLoaded={() => setTextLineLoaded(true)} />
-        <Sidebar onSelected={selectedAnnotationEvent}/>
-      </RecogitoContext.Provider>
-    </TextLineContext.Provider>
+    <TextContentContext.Provider value={textContent}>
+      <TextLineContext.Provider value={textLineId}>
+        <RecogitoContext.Provider value={recogitoValue}>
+          <TextLine forwardRef={textEl} initRecogito={initRecogito} text={textContent} />
+          <Sidebar onSelected={selectedAnnotationEvent}/>
+        </RecogitoContext.Provider>
+      </TextLineContext.Provider>
+    </TextContentContext.Provider>
   );
 }
+
+App.propTypes = {
+  textContent: PropTypes.string
+};
 
 export default App;
