@@ -75,7 +75,15 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {} # TODO: Add SMTP settings. vedere pico
+  config.action_mailer.smtp_settings = {
+    address: ENV.fetch("SMTP_ADDRESS"),
+    domain: ENV.fetch("SMTP_DOMAIN"),
+    authentication: :login,
+    enable_starttls_auto: true,
+    port: "587",
+    user_name: ENV.fetch("SMTP_USERNAME"),
+    password: ENV.fetch("SMTP_PASSWORD")
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
