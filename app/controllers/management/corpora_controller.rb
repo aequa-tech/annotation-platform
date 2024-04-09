@@ -6,25 +6,6 @@ module Management
 
     after_action :create_text_lines, only: :create
 
-    def edit_lines_sets_count
-      @resource = Corpus.find(params[:id])
-
-      authorize @resource
-    end
-
-    def manage_sets
-      @resource = Corpus.find(params[:id])
-      @resource.lines_sets_count = params[:management_corpus][:lines_sets_count]
-      @resource.lines_sets.insert_all!(lines_sets_attributes)
-
-      AssignTextLinesToSetsJob.perform_later(@resource.id, @resource.lines_sets_count)
-
-      redirect_to [@resource, :lines_sets], flash: { notice: t("infold.flash.created") }
-    rescue ActiveRecord::RecordNotUnique
-      flash.now[:alert] = t("infold.flash.invalid")
-      render :show, status: :unprocessable_entity
-    end
-
     private
 
     def post_params
@@ -57,7 +38,8 @@ module Management
       return unless @resource.input_file.attached?
 
       blob_key = @resource.input_file.key
-      ImportCsvJob.perform_later(current_editor.id, blob_key, @resource.id)
+      @resource.lines_sets_count = params[:management_corpus][:lines_sets_count]
+      ImportCsvJob.perform_later(current_editor.id, blob_key, @resource.id, @resource.lines_sets_count)
     end
 
     def lines_sets_attributes

@@ -30,9 +30,5 @@ namespace "management" do
         resources :tasks, only: [:show]
       end
     end
-    member do
-      get :edit_lines_sets_count
-      patch :manage_sets
-    end
   end
 end
