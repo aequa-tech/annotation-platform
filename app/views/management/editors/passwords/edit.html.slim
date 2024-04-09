@@ -1,0 +1,26 @@
+.page style="padding-top: 5rem"
+  .container-tight
+    = simple_form_for(resource, as: resource_name, url: editor_password_path, html: { method: :post, class: "card card-md" }) do |f|
+      = f.error_notification
+
+      .card-body
+        .card-title.text-center.mb-4
+          h1 Management Portal
+        .mb-3
+          = f.input :reset_password_token, as: :hidden
+          = f.full_error :reset_password_token
+
+          .form-inputs
+            = f.input :password,
+                        label: "New password",
+                        required: true,
+                        autofocus: true,
+                        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                        input_html: { autocomplete: "new-password" }
+            = f.input :password_confirmation,
+                        label: "Confirm your new password",
+                        required: true,
+                        input_html: { autocomplete: "new-password" }
+        .form-footer
+          .form-actions
+            = f.button :submit, "Change my password", class: "btn btn-primary w-100"
