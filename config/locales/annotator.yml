@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    attributes:
+      annotator:
+        fullname: Fullname
+        email: Email
+        editor: Editor
+        invitation_accepted: Invitation accepted
+        created_at: Created at
+        updated_at: Updated at

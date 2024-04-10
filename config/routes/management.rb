@@ -20,7 +20,12 @@ namespace "management" do
   devise_scope :editor do
     root to: "editors/sessions#new", as: :unauthenticated_root
   end
-  resources :annotators
+  resources :annotators do
+    collection do
+      get :import
+      post :import_csv
+    end
+  end
   resources :taxonomies
   resources :corpora do
     resources :text_lines, only: [:index, :show]

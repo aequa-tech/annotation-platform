@@ -1,0 +1,26 @@
+= turbo_frame_tag("modal_main") do
+  = simple_form_for(Annotator, url: import_csv_management_annotators_path, html: { method: :post, class: "card card-md" }) do |form|
+    = render Admin::RemoteModalComponent.new(backdrop: :static) do |modal|
+      = modal.with_header do
+        ol.breadcrumb.text-dark
+          li.breadcrumb-item ANNOTATORS
+          li.breadcrumb-item.active = t("infold.operation.import_csv")
+      = modal.with_body do
+        .modal-body#form_body
+          .list-group.mb-3
+            .list-group-item
+              .input-group
+                .col-md-3
+                  = form.label :annotators_csv, t("activerecord.attributes.annotator.annotators_csv")
+                .col-md-9
+                  .row
+                    .col-md-9.px-0
+                      = form.input :annotators_csv, as: :file, label: false, input_html: { class: "form-control" }
+                    .col-md-3.px-0
+                      button.btn.btn-secondary.px-1.mb-3 type="button" onclick="this.form.reset();" = t("infold.operation.clear")
+                  p.text-warning = t("infold.operation.import_csv_desc")
+
+      = modal.with_footer do
+        .modal-footer
+          button.btn.btn-secondary data-bs-dismiss="modal" type="button" = t("infold.operation.cancel")
+          = form.submit t("infold.operation.invite"), class: "btn btn-primary"

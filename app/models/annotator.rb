@@ -1,4 +1,8 @@
 class Annotator < ApplicationRecord
+  class << self
+    attr_accessor :annotators_csv
+  end
+
   devise :invitable, :database_authenticatable,
     :recoverable, :rememberable, :validatable
 
