@@ -1,5 +1,5 @@
 class Annotator < ApplicationRecord
-  devise :database_authenticatable,
+  devise :invitable, :database_authenticatable,
     :recoverable, :rememberable, :validatable
 
   belongs_to :editor
