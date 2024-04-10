@@ -10,11 +10,13 @@ tr id="#{dom_id(resource)}"
     |< |
     =< link_to "show lines", management_corpus_lines_set_text_lines_path(@corpus, resource), class: ""
   td
-    = resource.annotators.count
+    = link_to management_corpus_lines_set_path(@corpus, resource),
+      class: "d-block", data: { turbo_frame: "modal_main" } do
+      = resource.annotators.count
   td
     = l(resource.created_at, format: :day_month_abbr)
   td
     = l(resource.updated_at, format: :day_month_abbr)
   td.icon_cell
     = link_to edit_management_corpus_lines_set_path(@corpus, resource), class: "d-block", data: { turbo_frame: "modal_main" } do
-      i.bi.bi-pencil-square.h3
+      i.bi.bi-person-plus-fill.h3
