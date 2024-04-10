@@ -2,7 +2,9 @@
 
 module Management
   class LinesSetsController < BaseController
+    prepend_before_action :set_resource, only: %i[show edit update]
     before_action :set_corpus
+    before_action :set_annotators, only: %i[edit update]
 
     def index
       authorize @corpus, :show?
@@ -12,18 +14,19 @@ module Management
     end
 
     def show
-      @resource = klass.find(params[:id])
     end
 
     def edit
-      @resource = klass.find(params[:id])
     end
 
     def update
-      @resource = klass.find(params[:id])
       @resource.assign_attributes(post_params)
-      tasks_attributes = post_params[:task_annotator_ids].inject([]) do |acc, annotator_id|
-        acc << { annotator_id: annotator_id }
+      tasks_attributes = if post_params[:task_annotator_ids].present?
+        post_params[:task_annotator_ids].inject([]) do |acc, annotator_id|
+          acc << { annotator_id: annotator_id }
+        end
+      else
+        []
       end
 
       if @resource.save && @resource.tasks.insert_all(tasks_attributes, unique_by: :index_tasks_on_annotator_id_and_lines_set_id)
@@ -38,7 +41,11 @@ module Management
     private
 
     def post_params
-      params.require(:management_lines_set).permit(:title, task_annotator_ids: [])
+      params.require(:management_lines_set).permit(
+        :title,
+        task_annotator_ids: [],
+        tasks_attributes: %i[id _destroy]
+      )
     end
 
     def search_params
@@ -57,8 +64,16 @@ module Management
       LinesSetSearchForm
     end
 
+    def set_resource
+      @resource = klass.find(params[:id])
+    end
+
     def set_corpus
       @corpus = Corpus.find(params[:corpus_id])
+    end
+
+    def set_annotators
+      @annotators = policy_scope(Annotator).where.not(id: @resource.tasks.pluck(:annotator_id))
     end
   end
 end

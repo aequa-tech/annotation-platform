@@ -10,6 +10,8 @@ tr id="#{dom_id(resource)}"
     |< |
     =< link_to "show lines", management_corpus_lines_set_text_lines_path(@corpus, resource), class: ""
   td
+    = resource.annotators.count
+  td
     = l(resource.created_at, format: :day_month_abbr)
   td
     = l(resource.updated_at, format: :day_month_abbr)
