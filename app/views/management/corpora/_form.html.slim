@@ -3,9 +3,12 @@
     = render Admin::FieldsetComponent.new(form, :title, :text)
   .list-group-item
     = render Admin::FieldsetComponent.new(form, :input_file, :file)
-  .list-group-item
-    = render Admin::FieldsetComponent.new(form, :lines_sets_count, :number)
-    p.mt-4.text-muted = t("views.corpus.lines_sets_count_desc")
+  - if @resource.new_record?
+    .list-group-item
+      = render Admin::FieldsetComponent.new(form, :lines_sets_count, :number)
+      .mt-4
+        p.text-warning = t("views.corpus.lines_sets_count_warning")
+        p.text-muted = t("views.corpus.lines_sets_count_desc")
   .list-group-item
     = render Admin::FieldsetComponent.new(form, :taxonomy_ids, :checkbox,
       list: Taxonomy.pluck(:id, :title),
