@@ -4,9 +4,14 @@ module Management
   class CorporaController < BaseController
     include CrudActions
 
+    before_action :set_taxonomies, only: %i[new create edit update]
     after_action :create_text_lines, only: :create
 
     private
+
+    def set_taxonomies
+      @taxonomies = policy_scope(Taxonomy).order(:title)
+    end
 
     def post_params
       permitted_params.merge(editor_id: current_editor.id)
