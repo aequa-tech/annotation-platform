@@ -2,6 +2,40 @@
 @import 'bootstrap-icons/font/bootstrap-icons';
 @import "@recogito/recogito-js/src/TextAnnotator.scss";
 
+
+// normalize / a11y
+
+a:focus {
+  border: 2px solid #333;
+  border-radius: 6px;
+  padding: .1rem;
+}
+
+[data-bs-toggle=dropdown]:active + .dropdown-menu-hover,
+[data-bs-toggle=dropdown]:active ~ .dropdown-menu-hover,
+.dropdown-menu-hover:active,
+.dropdown-menu-hover + .dropdown-menu:active,
+.dropdown-menu-hover:active + .dropdown-menu {
+  display: block;
+}
+
+section a, footer a {
+  text-decoration: underline;
+}
+
+.table-header * {
+  font-style: italic;
+}
+
+p {
+  font-size: 1rem;
+}
+
+.r6o-editor textarea, .r6o-editor, .r6o-editable-text, .r6o-label, .r6o-widget.r6o-semtags, .r6o-widget.r6o-tag ul.r6o-taglist li, .r6o-widget.r6o-semtags .r6o-semtags-dropdown-bottom li p {
+  font-size: 1rem !important;
+}
+
+
 // Recogito annotation inserts a layer which is not needed in our case
 
 #aside-main {
@@ -10,6 +44,7 @@
 
 .r6o-relations-layer {
   display: none;
+  visibility: hidden;
 }
 
 [data-react-component="App"] {
@@ -26,17 +61,15 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     color: white;
-    background: rgb(255, 84, 4);
-    background: linear-gradient(180deg, rgba(255, 84, 4, 1) 0%, rgba(255, 166, 30, 1) 35%, rgba(255, 255, 255, 0) 100%);
-    text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);
+    background: #574fec;
 
-    .h5 {
-      font-size: 13px;
+    .h2 {
+      font-size: 1rem;
       font-weight: 700;
       text-transform: uppercase;
 
       &__bigger {
-        font-size: 24px;
+        font-size: 1.7rem;
       }
     }
   }
@@ -87,4 +120,12 @@
       }
     }
   }
+}
+
+footer h2 {
+  font-size: 1.5rem;
+}
+
+footer a:hover {
+  color: #574fec !important;
 }

@@ -43,11 +43,10 @@ header#header.shadow-xs
 
       ul.list-inline.list-unstyled.mb-0.d-flex.align-items-end
         li.list-inline-item.mx-1.dropdown
-          a#dropdownAccountOptions.btn.rounded-circle.btn-light[href="#" aria-label="Account Options" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"]
+          a#dropdownAccountOptions.btn.rounded-circle.btn-light[href="#account-menu" aria-label="Account Options" data-bs-toggle="account-menu" aria-expanded="false" aria-haspopup="true"]
             span.group-icon
               i.fi.fi-user-male
-              i.fi.fi-close
-          .prefix-link-icon.prefix-icon-dot.dropdown-menu.dropdown-menu-hover.dropdown-menu-clean.dropdown-click-ignore.end-0.p-2[aria-labelledby="dropdownAccountOptions" style="min-width:215px;"]
+          #account-menu.prefix-link-icon.prefix-icon-dot.dropdown-menu.dropdown-menu-hover.dropdown-menu-clean.dropdown-click-ignore.end-0.p-2[aria-labelledby="dropdownAccountOptions" style="min-width:215px;"]
             .dropdown-header
               = current_annotator.fullname
             .dropdown-divider

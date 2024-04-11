@@ -14,10 +14,10 @@ const Sidebar = (props) => {
   return (
     <aside id="aside-main" className="aside-main d-flex align-items-stretch align-items-start flex-column aside-end fw-light aside-hide-xs">
       <div className="aside-main__header clearfix px-3 py-4 mb-1 text-center bg-diff align-self-baseline w-100">
-        <h5 className="h5">
+        <h2 className="h2">
           Text Line ID<br/>
-          <span className="h5__bigger">{textLineId}</span>
-        </h5>
+          <span className="h2__bigger">{textLineId}</span>
+        </h2>
       </div>
       <div className="aside-main__wrapper scrollable-vertical scrollable-styled-light align-self-baseline h-100 w-100">
         <nav className="nav-deep nav-deep-light nav-deep-hover">

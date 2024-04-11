@@ -8,6 +8,20 @@
 
     section.p-0.container-fluid
       .list-divider.p-4
+      .px-1.py-3.table-header
+        .row.g-4.g-lg-5.align-items-center
+          .col
+            .d-flex.align-items-center
+              | Item
+          .col-auto
+            .d-inline-block
+              | Deadline
+          .col-auto
+            .d-inline-block
+              | Duration
+          .col-auto
+            .d-inline-block
+              | Status
       // item
       - @text_lines.each do |text_line|
         .px-1.py-3
