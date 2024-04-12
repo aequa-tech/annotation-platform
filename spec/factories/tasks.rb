@@ -10,6 +10,8 @@ end
 # Table name: tasks
 #
 #  id           :bigint           not null, primary key
+#  completed    :boolean
+#  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  annotator_id :bigint           not null
 #  lines_set_id :bigint           not null

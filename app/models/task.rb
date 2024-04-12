@@ -9,6 +9,21 @@ class Task < ApplicationRecord
   validates :annotator_id, presence: true
   validates :annotator_id, uniqueness: { scope: :lines_set_id }
 
+  scope :completed, -> { where(completed: true) }
+  scope :incompleted, -> { where(completed: false) }
+
+  def complete!
+    update(completed: true)
+  end
+
+  def completed?
+    completed
+  end
+
+  def incomplete?
+    !completed
+  end
+
   def title
     [lines_set.title, corpus.title].join(" - ")
   end
@@ -19,6 +34,8 @@ end
 # Table name: tasks
 #
 #  id           :bigint           not null, primary key
+#  completed    :boolean
+#  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  annotator_id :bigint           not null
 #  lines_set_id :bigint           not null
