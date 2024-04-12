@@ -25,7 +25,7 @@ en:
       destroyed: Successfully destroyed
       invalid: Cannot save record
       invalid_destroy: Cannot delete record
-      invited: Annotators invited successfully
+      queued_invites: Invites were queued for sending
       build_completed: Build completed
       db_synced: DB sync is complete
     badge:
