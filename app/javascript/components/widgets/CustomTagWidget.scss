@@ -19,12 +19,18 @@
     border-width:1px 1px 0 1px;
     border-style: solid;
     border-color:transparent;
+    background-color: #fff;
 
     .placeholder {
       display:inline-block;
-      color:#7a7979;
-      background-color: inherit;
+      color:#444;
+      background: transparent;
       cursor: pointer;
+      opacity: 1;
+
+      p {
+        color: #444;
+      }
 
       svg {
         margin-left:5px;
