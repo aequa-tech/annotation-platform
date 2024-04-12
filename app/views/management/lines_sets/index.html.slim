@@ -19,6 +19,7 @@
     :title, label: Management::LinesSet.human_attribute_name(:title))
   th = render Admin::SortableComponent.new(@search,
     :text_lines_count, label: I18n.t("views.lines_set.index.text_lines_count"))
+  th = Management::LinesSet.human_attribute_name(:annotators)
   th = render Admin::SortableComponent.new(@search, :created_at,
     label: Management::LinesSet.human_attribute_name(:created_at))
   th = render Admin::SortableComponent.new(@search, :updated_at,

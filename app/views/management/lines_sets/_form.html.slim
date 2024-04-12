@@ -2,6 +2,21 @@
   .list-group-item
     = render Admin::FieldsetComponent.new(form, :title, :text)
   .list-group-item
+    .row
+      .col-md-3
+        .string.optional.form-label.fw-bold.text-muted = t("views.lines_set.header.menu.assigned_tasks")
+      .col-md-9.col-xl-6
+        = form.fields_for :tasks do |task_form|
+          .form_check.mb-3
+            = task_form.hidden_field :id
+            = task_form.check_box :_destroy, class: "form-check-input", data: { toggle: "destroy" }
+            = task_form.label t("views.lines_set.form.remove"),
+              for: :_destroy,
+              class: "form-check-label ps-3 fw-bold text-decoration-underline"
+            =< task_form.object.annotator.email
+
+    hr
     = render Admin::FieldsetComponent.new(form, :task_annotator_ids, :checkbox,
-      list: Annotator.pluck(:id, :email),
+      label: t("views.lines_set.form.assign_annotators"),
+      list: @annotators.pluck(:id, :email),
       checked_values: form.object.annotator_ids)

@@ -6,6 +6,8 @@ class LinesSet < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :annotators, through: :tasks
 
+  accepts_nested_attributes_for :tasks, allow_destroy: true
+
   validates :corpus_id, presence: true
   validates :title, presence: true
   validates :title, uniqueness: { scope: :corpus_id }

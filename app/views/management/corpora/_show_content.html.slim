@@ -52,7 +52,9 @@
       .col-md-3
         .text-muted.fw-bold = resource.class.human_attribute_name(:lines_sets)
       .col-md-9
-        - if resource.lines_sets.any?
-          = link_to "Visualizza import", management_corpus_lines_sets_path(resource)
-        - else
-          = t("views.corpus.no_data")
+        = turbo_stream_from ["create_lines_sets_channel", current_editor] if current_editor
+        #create_lines_sets_task
+          - if resource.lines_sets.any?
+            = render partial: "management/corpora/index_lines_sets_path", locals: { resource: resource }
+          - else
+            = t("views.corpus.no_data")

@@ -3,6 +3,9 @@ en:
     lines_set:
       index:
         text_lines_count: Number of text lines
+      form:
+        assign_annotators: Assign Annotators
+        remove: Remove
       header:
         menu:
           proposed_tasks: "Proposed Tasks"

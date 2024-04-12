@@ -8,9 +8,6 @@
 - unless admin_remote_modal_id == "modal_sub"
   = modal.with_footer do
     .modal-footer
-      - if controller.respond_to?(:edit_lines_sets_count) && @resource.lines_sets.blank?
-        = link_to t("infold.operation.edit_lines_sets_count"), [:edit_lines_sets_count, @resource],
-          class: "btn btn-primary", data: { turbo_frame: "modal_main" }
       - if @resource.is_a?(Management::LinesSet)
         = link_to t("infold.operation.edit"), edit_management_corpus_lines_set_path(@corpus, @resource),
           class: "btn btn-primary", data: { turbo_frame: "modal_main" }
