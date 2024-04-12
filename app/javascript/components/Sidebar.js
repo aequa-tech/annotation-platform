@@ -16,7 +16,7 @@ const Sidebar = (props) => {
       <div className="aside-main__header clearfix px-3 py-4 mb-1 text-center bg-diff align-self-baseline w-100">
         <h2 className="h2">
           Text Line ID<br/>
-          <span className="h2__bigger">{textLineId}</span>
+          <span className="h2__bigger" aria-level="2">{textLineId}</span>
         </h2>
       </div>
       <div className="aside-main__wrapper scrollable-vertical scrollable-styled-light align-self-baseline h-100 w-100">
