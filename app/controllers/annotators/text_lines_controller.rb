@@ -7,6 +7,7 @@ module Annotators
     def show
       authorize @task, :assigned?
       @text_line = @task.text_lines.find(params[:id])
+      @navigation = TaskTextLinesNavigator.new(@task.text_lines, @text_line)
     end
 
     def index
