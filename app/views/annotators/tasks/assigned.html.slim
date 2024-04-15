@@ -22,6 +22,7 @@
           .col-auto
             .d-inline-block
               | Status
+
       // item
       - @tasks.each do |task|
         .px-1.py-3
@@ -57,3 +58,6 @@
 
                   .col-auto.py-2
                     button.small.link-muted.bg-transparent.p-0.m-0.border-0 type="button" 10% completed
+
+      .d-flex-align-middle
+        = paginate(@tasks, views_prefix: "annotators")

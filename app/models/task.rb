@@ -12,6 +12,10 @@ class Task < ApplicationRecord
   scope :completed, -> { where(completed: true) }
   scope :incompleted, -> { where(completed: false) }
 
+  scope :annotator_id_eq, ->(v) do
+    where(annotator_id: v) if v.present?
+  end
+
   def complete!
     update(completed: true)
   end
