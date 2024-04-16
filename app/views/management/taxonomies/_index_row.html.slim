@@ -1,6 +1,6 @@
 tr id="#{dom_id(resource)}"
   td.icon_cell
-    = link_to management_taxonomy_path(resource), class: "d-block", data: { turbo_frame: "modal_main" } do
+    = link_to management_taxonomy_path(resource), "aria-label": "Taxonomy info", class: "d-block", data: { turbo_frame: "modal_main" } do
       i.bi.bi-file-text.h3
   td
     = resource.id
@@ -11,5 +11,5 @@ tr id="#{dom_id(resource)}"
   td
     = l(resource.created_at, format: :day_month_abbr)
   td.icon_cell
-    = link_to edit_management_taxonomy_path(resource), class: "d-block", data: { turbo_frame: "modal_main" } do
+    = link_to edit_management_taxonomy_path(resource), "aria-label": "Edit taxonomy", class: "d-block", data: { turbo_frame: "modal_main" } do
       i.bi.bi-pencil-square.h3

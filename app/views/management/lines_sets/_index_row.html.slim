@@ -1,7 +1,7 @@
 tr id="#{dom_id(resource)}"
   td.icon_cell
     = link_to management_corpus_lines_set_path(@corpus, resource),
-      class: "d-block", data: { turbo_frame: "modal_main" } do
+      class: "d-block", "aria-label": "Line set info", data: { turbo_frame: "modal_main" } do
       i.bi.bi-file-text.h3
   td
     = resource.title
@@ -18,5 +18,6 @@ tr id="#{dom_id(resource)}"
   td
     = l(resource.updated_at, format: :day_month_abbr)
   td.icon_cell
-    = link_to edit_management_corpus_lines_set_path(@corpus, resource), class: "d-block", data: { turbo_frame: "modal_main" } do
+    = link_to edit_management_corpus_lines_set_path(@corpus, resource),
+      class: "d-block", "aria-label": "Edit line set", data: { turbo_frame: "modal_main" } do
       i.bi.bi-person-plus-fill.h3

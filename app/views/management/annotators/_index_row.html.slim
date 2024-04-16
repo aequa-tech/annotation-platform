@@ -1,6 +1,6 @@
 tr id="#{dom_id(resource)}"
   td.icon_cell
-    = link_to management_annotator_path(resource), class: "d-block", data: { turbo_frame: "modal_main" } do
+    = link_to management_annotator_path(resource), "aria-label": "User info", class: "d-block", data: { turbo_frame: "modal_main" } do
       i.bi.bi-file-text.h3
   td
     = resource.id
@@ -20,5 +20,5 @@ tr id="#{dom_id(resource)}"
   td
     = resource.created_at
   td.icon_cell
-    = link_to edit_management_annotator_path(resource), class: "d-block", data: { turbo_frame: "modal_main" } do
+    = link_to edit_management_annotator_path(resource), "aria-label": "Edit user", class: "d-block", data: { turbo_frame: "modal_main" } do
       i.bi.bi-pencil-square.h3
