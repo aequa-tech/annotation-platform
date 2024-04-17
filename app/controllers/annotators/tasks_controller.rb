@@ -5,5 +5,9 @@ module Annotators
     def assigned
       @tasks = policy_scope(Task)
     end
+
+    def completed
+      @tasks = policy_scope(Task)
+    end
   end
 end

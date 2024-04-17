@@ -10,7 +10,8 @@ end
 
 namespace "annotators" do
   authenticated :annotator do
-    root to: "tasks#assigned", as: :root
+    get "assigned", to: "tasks#assigned", as: :assigned
+    get "completed", to: "tasks#completed", as: :completed
   end
 
   # devise_scope :annotator do

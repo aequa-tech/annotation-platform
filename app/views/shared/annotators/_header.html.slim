@@ -20,40 +20,27 @@ header#header.shadow-xs
             = image_tag "logo-aequa-tech.png", alt: "Annotations Portal", width: 120
 
         ul.navbar-nav
-
-          li.nav-item.dropdown
-            a.nav-link.nav-link-caret-hide
-              span
-                = t("shared.annotators.header.menu.proposed_tasks")
-
-          li.nav-item.dropdown
-            a.nav-link.nav-link-caret-hide
-              span
-                = t("shared.annotators.header.menu.assigned_tasks")
-
-          li.nav-item.dropdown
-            a.nav-link.nav-link-caret-hide
-              span
-                = t("shared.annotators.header.menu.started_tasks")
-
-          li.nav-item.dropdown
-            a.nav-link.nav-link-caret-hide
-              span
-                = t("shared.annotators.header.menu.completed_tasks")
+          - %w[assigned completed].map do |task|
+            - active = task == action_name
+            li.nav-item
+              = link_to [:annotators, task.to_sym], class: "nav-link nav-link-caret-hide #{active ? "active" : ""}",
+                "aria-current": active ? "page" : "" do
+                span
+                  = t("shared.annotators.header.menu.#{task}_tasks")
 
       ul.list-inline.list-unstyled.mb-0.d-flex.align-items-end
         li.list-inline-item.mx-1.dropdown
-          a#dropdownAccountOptions.btn.rounded-circle.btn-light[href="#account-menu" aria-label="Account Options" data-bs-toggle="account-menu" aria-expanded="false" aria-haspopup="true"]
+          a#dropdownAccountOptions.btn.rounded-circle.btn-light[href="#account-menu" aria-label="Account Options" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true"]
             span.group-icon
               i.fi.fi-user-male
           #account-menu.prefix-link-icon.prefix-icon-dot.dropdown-menu.dropdown-menu-hover.dropdown-menu-clean.dropdown-click-ignore.end-0.p-2[aria-labelledby="dropdownAccountOptions" style="min-width:215px;"]
             .dropdown-header
               = current_annotator.fullname
             .dropdown-divider
-            a.prefix-icon-ignore.dropdown-footer.dropdown-custom-ignore[href="account-settings.html" title="Account Settings"]
-              i.fi.fi-cog.float-start
-              |  Account Settings
-            .dropdown-divider.mb-0
+            / a.prefix-icon-ignore.dropdown-footer.dropdown-custom-ignore[href="account-settings.html" title="Account Settings"]
+            /   i.fi.fi-cog.float-start
+            /   |  Account Settings
+            / .dropdown-divider.mb-0
             = link_to destroy_annotator_session_path,
               class: "prefix-icon-ignore dropdown-footer dropdown-custom-ignore", data: { turbo_method: :delete }, title: "Log Out" do
             = button_to destroy_annotator_session_path, class: "prefix-icon-ignore dropdown-footer dropdown-custom-ignore btn", method: :delete
