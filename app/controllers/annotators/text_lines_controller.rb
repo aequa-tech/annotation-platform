@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Annotators
-  class TextLinesController < ApplicationController
+  class TextLinesController < BaseController
     before_action :set_task, only: %i[index show]
 
     def show

@@ -1,0 +1,22 @@
+.text-center.p-6
+  h1 aequa-tech: annotate
+.text-center.p-3
+  p
+    = "If you don't have an account, fill in the"
+    =< link_to "request form", root_path
+.text-center.p-3
+  p
+    = "If you do have an account, use one of the links below to log in."
+
+.p-3
+  .row
+    .col-2
+    .col-4
+      .homepage__card
+        h2 I am an Editor
+        = link_to "Login as editor", new_editor_session_path
+    .col-4
+      .homepage__card
+        h2 I am an Annotator
+        = link_to "Login as annotator", new_annotator_session_path
+    .col-2

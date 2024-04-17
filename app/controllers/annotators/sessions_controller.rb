@@ -5,7 +5,7 @@ module Annotators
     layout "application"
 
     def after_sign_in_path_for(resources)
-      root_path
+      annotators_assigned_path
     end
 
     def after_sign_out_path_for(resource)

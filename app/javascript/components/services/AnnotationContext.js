@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-const expression = /^\/tasks\/(\d+)\/text_lines\/(\d+)/i
+const expression = /^\/annotators\/tasks\/(\d+)\/text_lines\/(\d+)/i
 
 export const RecogitoContext = createContext(null);
 

@@ -11,7 +11,7 @@ html lang="en"
 
   body
     #wrapper
-      - if current_annotator.present?
+      - if current_annotator.present? && %w[sessions passwords registrations confirmations unlocks home].exclude?(controller_name)
         = render partial: "shared/annotators/header"
       .bg-lime = yield
       = render partial: "shared/annotators/footer"
