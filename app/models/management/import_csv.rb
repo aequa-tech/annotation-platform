@@ -16,9 +16,10 @@ module Management
     end
 
     def valid_headers?
-      csv = CSV.open(csv_file)
-      csv_headers = csv.shift
-      csv.close
+      csv_headers = CSV.open(csv_file) do |csv|
+        csv.shift
+      end
+
       REQUIRED_HEADERS - csv_headers == []
     end
   end
