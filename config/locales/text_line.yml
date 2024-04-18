@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    attributes:
+      text_line:
+        text: Text
+        corpus: Corpus
+        annotator: Annotator
+        created_at: Created at
+        updated_at: Updated at
+  views:
+    text_line:
+      annotated: Annotated
+      not_annotated: Not annotated
+      status: Status
+      annotations_count: Annotations
+      item: Item

@@ -7,6 +7,10 @@ class TextLine < ApplicationRecord
   validates :content, presence: true
 
   scope :ordered, -> { order(:position) }
+
+  def annotated_by?(user)
+    annotations.where(annotator: user).exists?
+  end
 end
 
 # == Schema Information
