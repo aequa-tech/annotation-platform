@@ -31,6 +31,14 @@ class Task < ApplicationRecord
   def title
     [lines_set.title, corpus.title].join(" - ")
   end
+
+  def completation_percentage
+    return 0 if annotations.empty?
+
+    (
+      annotations.pluck(:text_line_id).uniq.count.to_f / text_lines.count.to_f * 100
+    ).round
+  end
 end
 
 # == Schema Information
@@ -38,7 +46,7 @@ end
 # Table name: tasks
 #
 #  id           :bigint           not null, primary key
-#  completed    :boolean
+#  completed    :boolean          default(FALSE), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  annotator_id :bigint           not null

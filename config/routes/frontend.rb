@@ -20,7 +20,7 @@ namespace "annotators" do
 
   resources :tasks, only: [:assigned] do
     member do
-      post :complete
+      patch :complete
     end
     resources :text_lines, only: [:index, :show]
   end
