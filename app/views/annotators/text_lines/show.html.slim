@@ -8,13 +8,13 @@
         ul.nav.nav-sm.nav-invert.rounded-pill
           - unless @navigation.first?
             = render partial: "annotators/kaminari/first_page",
-              locals: { url: task_text_line_path(@task, @navigation.first), remote: true, current_page: @navigation }
+              locals: { url: annotators_task_text_line_path(@task, @navigation.first), remote: true, current_page: @navigation }
             = render partial: "annotators/kaminari/prev_page",
-              locals: { url: task_text_line_path(@task, @navigation.prev), remote: true, current_page: @navigation }
+              locals: { url: annotators_task_text_line_path(@task, @navigation.prev), remote: true, current_page: @navigation }
           li.nav-item
             span.nav-link.disabled.px-3 = "#{@navigation.current_position} of #{@navigation.total}"
           - unless @navigation.last?
             = render partial: "annotators/kaminari/next_page",
-              locals: { url: task_text_line_path(@task, @navigation.next), remote: true, current_page: @navigation }
+              locals: { url: annotators_task_text_line_path(@task, @navigation.next), remote: true, current_page: @navigation }
             = render partial: "annotators/kaminari/last_page",
-              locals: { url: task_text_line_path(@task, @navigation.last), remote: true, current_page: @navigation }
+              locals: { url: annotators_task_text_line_path(@task, @navigation.last), remote: true, current_page: @navigation }
