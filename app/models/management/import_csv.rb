@@ -9,14 +9,17 @@ module Management
     attribute :csv_file, default: nil
     attribute :headers, default: true
 
+    REQUIRED_HEADERS = ["email", "fullname"]
+
     def valid?
-      klass.present? && csv_file.present?
+      klass.present? && csv_file.present? && valid_headers?
     end
 
-    def import
-      CSV.parse(@csv_file, headers: @headers) do |row|
-        @klass.invite!(email: row["email"], fullname: row["fullname"], editor_id: current_editor.id)
-      end
+    def valid_headers?
+      csv = CSV.open(csv_file)
+      csv_headers = csv.shift
+      csv.close
+      REQUIRED_HEADERS - csv_headers == []
     end
   end
 end
