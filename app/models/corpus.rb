@@ -6,6 +6,7 @@ class Corpus < ApplicationRecord
   has_and_belongs_to_many :taxonomies
   has_many :lines_sets, dependent: :destroy
   has_many :text_lines, dependent: :destroy
+  has_many :tasks, through: :lines_sets
 
   has_one_attached :input_file
 end

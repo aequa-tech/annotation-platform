@@ -7,6 +7,11 @@ module Management
     before_action :set_taxonomies, only: %i[new create edit update]
     after_action :create_text_lines, only: :create
 
+    def tasks_json
+      @corpus = Corpus.find(params[:id])
+      render :tasks_json
+    end
+
     private
 
     def set_taxonomies

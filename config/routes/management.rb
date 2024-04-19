@@ -28,6 +28,11 @@ namespace "management" do
   end
   resources :taxonomies
   resources :corpora do
+    constraints(lambda { |req| req.format == :json }) do
+      member do
+        get :tasks_json
+      end
+    end
     resources :text_lines, only: [:index, :show]
     resources :lines_sets, only: [:index, :show, :edit, :update] do
       resources :text_lines, only: [:index]
