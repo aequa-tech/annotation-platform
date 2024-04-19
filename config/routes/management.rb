@@ -35,6 +35,7 @@ namespace "management" do
     end
     resources :text_lines, only: [:index, :show]
     resources :lines_sets, only: [:index, :show, :edit, :update] do
+      patch :undo, on: :member
       resources :text_lines, only: [:index]
       constraints(lambda { |req| req.format == :json }) do
         resources :tasks, only: [:show]

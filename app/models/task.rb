@@ -20,6 +20,10 @@ class Task < ApplicationRecord
     update(completed: true)
   end
 
+  def undo!
+    update(completed: false)
+  end
+
   def completed?
     completed
   end
@@ -35,9 +39,7 @@ class Task < ApplicationRecord
   def completation_percentage
     return 0 if annotations.empty?
 
-    (
-      annotations.pluck(:text_line_id).uniq.count.to_f / text_lines.count.to_f * 100
-    ).round
+    (annotations.pluck(:text_line_id).uniq.count.to_f / text_lines.count.to_f * 100).round
   end
 end
 
