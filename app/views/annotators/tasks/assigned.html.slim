@@ -10,50 +10,33 @@
       .list-divider.p-4
       .px-1.py-3.table-header
         .row.g-4.g-lg-5.align-items-center
-          .col
+          .col-8
             .d-flex.align-items-center
               | Sets
-          .col-auto
-            .d-inline-block
-              | Deadline
-          .col-auto
-            .d-inline-block
-              | Duration
-          .col-auto
-            .d-inline-block
-              | Status
+          .col-4
+            .row
+              .col-6
+                | Action
+              .col-6
+                | Status
+
       // item
       - @tasks.each do |task|
         .px-1.py-3
           .row.g-4.g-lg-5.align-items-center
-            .col
+            .col-8
               .d-flex.align-items-center
                 = link_to task.title, annotators_task_text_lines_path(task), class: "d-block w-100 lh-sm fs-6 link-normal text-truncate"
-            .col-auto
+            .col-4
               // task info
-              .d-inline-block
-                .row.text-center
+              .row.text-center
+                .col-6.py-2.border-end
+                  = react "ConfirmationModal", class: "border-0 bg-success-soft",
+                    props: { completePath: complete_annotators_task_path(task), label: t("views.task.mark_as_completed") }
 
-                  .col-auto.py-2.border-end
-                    .position-relative.bg-success-soft.py-1.smaller.rounded-sm
-                      a href="#!" class="link-normal ps-3" Dec 25 2022
-                      button type="button" class="btn-close float-end end-0 me-2"
+                .col-6.py-2
+                  .small.link-muted.bg-transparent.p-0.m-0.border-0
+                    = t("views.task.completation_percentage", percentage: task.completation_percentage)
 
-                  .col-auto.py-2.border-end
-                    button.small.link-muted.bg-transparent.p-0.m-0.border-0 type="button" 1h, 25m
-
-                    .dropdown-menu.dropdown-menu-end.shadow-lg.p-2
-                      .row.g-1.text-center
-                        .col-6.m-0.p-1
-                          label class="smaller mb-1 text-muted d-block" HRS
-                          input class="w-100 small p-1 border rounded-sm text-center" type="number" value="2" min="0"
-
-                        .col-6.m-0.p-1
-                          label class="smaller mb-1 text-muted d-block" MINS
-                          input class="w-100 small p-1 border rounded-sm text-center" type="number" value="32" min="0"
-
-                        .col-12.d-grid
-                          button type="button" class="btn btn-primary py-1 rounded-sm" Save
-
-                  .col-auto.py-2
-                    button.small.link-muted.bg-transparent.p-0.m-0.border-0 type="button" 10% completed
+      .d-flex-align-middle
+        = paginate(@tasks, views_prefix: "annotators")

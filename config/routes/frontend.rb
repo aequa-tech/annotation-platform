@@ -19,6 +19,9 @@ namespace "annotators" do
   # end
 
   resources :tasks, only: [:assigned] do
+    member do
+      patch :complete
+    end
     resources :text_lines, only: [:index, :show]
   end
 end

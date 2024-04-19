@@ -34,6 +34,7 @@ const Sidebar = (props) => {
                     ))}
                   </ul>
                 </a>
+                <button className="fi fi-pencil d-inline-block" onClick={() => props.onSelected(a)} />
                 <button className="fi fi-thrash d-inline-block" onClick={() => deleteAnnotation(a)} />
               </li>
             ))}

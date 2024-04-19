@@ -41,6 +41,7 @@ gem "tzinfo-data", platforms: %i[windows jruby] # Windows does not include zonei
 gem "bootsnap", require: false # Reduces boot times through caching; required in config/boot.rb
 
 group :development, :test do
+  gem "annotate", "~> 3.2"
   gem "brakeman"
   gem "bundler-audit"
   gem "factory_bot_rails"

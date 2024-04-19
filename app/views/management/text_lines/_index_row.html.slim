@@ -1,7 +1,7 @@
 tr id="#{dom_id(resource)}"
   td.icon_cell
     = link_to management_corpus_text_line_path(@corpus, resource),
-      class: "d-block", data: { turbo_frame: "modal_main" } do
+      class: "d-block", "aria-label": "Text line info", data: { turbo_frame: "modal_main" } do
       i.bi.bi-file-text.h3
   td
     = resource.external_id

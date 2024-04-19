@@ -2,7 +2,7 @@
 
 module Management
   class LinesSetsController < BaseController
-    prepend_before_action :set_resource, only: %i[show edit update]
+    prepend_before_action :set_resource, only: %i[show edit update undo]
     before_action :set_corpus
     before_action :set_annotators, only: %i[edit update]
 
@@ -36,6 +36,14 @@ module Management
         flash.now[:alert] = t("infold.flash.invalid")
         render :form, status: :unprocessable_entity
       end
+    end
+
+    def undo
+      task = Task.find(params[:task_id])
+      authorize task, :undo?
+      task.undo!
+
+      render :show
     end
 
     private

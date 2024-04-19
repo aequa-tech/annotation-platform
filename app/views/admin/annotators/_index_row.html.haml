@@ -1,6 +1,6 @@
 %tr{ id: dom_id(annotator) }
   %td.icon_cell
-    = link_to admin_annotator_path(annotator), class: 'd-block', data: { turbo_frame: 'modal_main' } do
+    = link_to admin_annotator_path(annotator), "aria-label": "Link to user info", class: 'd-block', data: { turbo_frame: 'modal_main' } do
       %i.bi.bi-file-text.h3
   %td
     = annotator.id
@@ -13,5 +13,5 @@
   %td
     = annotator.created_at
   %td.icon_cell
-    = link_to edit_admin_annotator_path(annotator), class: 'd-block', data: { turbo_frame: "modal_main" } do
+    = link_to edit_admin_annotator_path(annotator), class: 'd-block', "aria-label": "Edit user", data: { turbo_frame: "modal_main" } do
       %i.bi.bi-pencil-square.h3

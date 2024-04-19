@@ -1,3 +1,12 @@
+/* normalize for A11Y */
+body {
+    font-size: 1rem;
+}
+.table thead th, .form-label, .dropdown-menu, .form-control {
+    font-size: 1rem !important;
+}
+/** */
+
 #management_wrapper {
     display: flex;
 }
@@ -5,6 +14,47 @@
 .management_content {
     flex: 1;
 }
+
+
+.nav-link:focus, .nav-link:hover, .navbar-brand:hover, .navbar-brand:focus {
+    text-decoration: underline;
+	color: #333;
+}
+.navbar-brand {
+    color: #333;
+}
+.navbar-nav .nav-link.show {
+    color: #333;
+}
+
+#management_wrapper .navbar {
+    min-width: 17.5%;
+}
+
+#management_wrapper h1.navbar-brand a {
+    color: #fff;
+}
+
+.dropdown-item.text-white:hover, .dropdown-item.text-white:focus {
+    text-decoration: underline;
+}
+
+
+.btn-warning {
+    background-color: #0054a6;
+}
+.btn-warning:hover, .btn-warning:focus {
+    background-color: #0054a6;
+    opacity: .8;
+}
+.btn-info {
+    background-color: #005754;
+}
+.btn-info:hover, .btn-info:focus {
+    background-color: #005754;
+    opacity: .8;
+}
+
 
 #management_wrapper .management-editor {
     flex: 0.15;

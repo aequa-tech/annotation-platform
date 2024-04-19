@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    attributes:
+      task:
+        text: Text
+        corpus: Corpus
+        annotator: Annotator
+        created_at: Created at
+        updated_at: Updated at
+  views:
+    task:
+      mark_as_completed: Mark as completed
+      completation_percentage: "%{percentage}% completed"
+      completed:
+        true: "Yes"
+        false: "No"

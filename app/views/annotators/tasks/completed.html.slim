@@ -4,7 +4,7 @@
     header
       .row.g-1.align-items-center
         .col
-          h1.h4 Completed Tasks
+          h1.h4 Assigned Tasks
 
     section.p-0.container-fluid
       .list-divider.p-4
@@ -15,13 +15,8 @@
               | Sets
           .col-auto
             .d-inline-block
-              | Deadline
-          .col-auto
-            .d-inline-block
-              | Duration
-          .col-auto
-            .d-inline-block
               | Status
+
       // item
       - @tasks.each do |task|
         .px-1.py-3
@@ -34,26 +29,9 @@
               .d-inline-block
                 .row.text-center
 
-                  .col-auto.py-2.border-end
-                    .position-relative.bg-success-soft.py-1.smaller.rounded-sm
-                      a href="#!" class="link-normal ps-3" Dec 25 2022
-                      button type="button" class="btn-close float-end end-0 me-2"
-
-                  .col-auto.py-2.border-end
-                    button.small.link-muted.bg-transparent.p-0.m-0.border-0 type="button" 1h, 25m
-
-                    .dropdown-menu.dropdown-menu-end.shadow-lg.p-2
-                      .row.g-1.text-center
-                        .col-6.m-0.p-1
-                          label class="smaller mb-1 text-muted d-block" HRS
-                          input class="w-100 small p-1 border rounded-sm text-center" type="number" value="2" min="0"
-
-                        .col-6.m-0.p-1
-                          label class="smaller mb-1 text-muted d-block" MINS
-                          input class="w-100 small p-1 border rounded-sm text-center" type="number" value="32" min="0"
-
-                        .col-12.d-grid
-                          button type="button" class="btn btn-primary py-1 rounded-sm" Save
-
                   .col-auto.py-2
-                    button.small.link-muted.bg-transparent.p-0.m-0.border-0 type="button" 10% completed
+                    .small.link-muted.bg-transparent.p-0.m-0.border-0
+                      = t("views.task.completation_percentage", percentage: task.completation_percentage)
+
+      .d-flex-align-middle
+        = paginate(@tasks, views_prefix: "annotators")

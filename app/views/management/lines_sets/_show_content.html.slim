@@ -36,6 +36,8 @@
                 th
                 th Annotator
                 th JSON
+                th Completed?
+                th Actions
             tbody id="tasks"
               - resource.tasks.each_with_index do |task, index|
                 tr id="#{dom_id(task)}"
@@ -45,3 +47,10 @@
                   td
                     = link_to management_corpus_lines_set_task_path(@corpus, resource, task, format: :json), target: "_blank" do
                       i.bi.bi-filetype-json.h3
+                  td
+                    = t("views.task.completed.#{task.completed?}")
+                  td
+                    - if task.completed?
+                      = button_to undo_management_corpus_lines_set_path(@corpus, resource, task_id: task.id),
+                        method: :patch, class: "btn btn-primary", data: { toggle: "tooltip", placement: "top" }, title: "Undo Completition" do
+                        i.bi.bi-arrow-counterclockwise

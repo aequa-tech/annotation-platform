@@ -1,0 +1,6 @@
+- if page.current?
+  li.nav-item aria-current="page"
+    = content_tag :a, page, data: { remote: remote }, rel: page.rel, class: "nav-link px-3 active"
+- else
+  li.nav-item
+    = link_to page, url, remote: remote, rel: page.rel, class: "nav-link px-3"
