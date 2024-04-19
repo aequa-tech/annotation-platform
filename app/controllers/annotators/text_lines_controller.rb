@@ -5,7 +5,7 @@ module Annotators
     before_action :set_task, only: %i[index show]
 
     def show
-      authorize @task, :assigned?
+      authorize @task, :annotable?
       @text_line = @task.text_lines.find(params[:id])
       @navigation = TaskTextLinesNavigator.new(@task.text_lines, @text_line)
     end

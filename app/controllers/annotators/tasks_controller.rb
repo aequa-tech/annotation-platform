@@ -4,8 +4,25 @@ module Annotators
   class TasksController < BaseController
     def assigned
       @search = TaskSearchForm.new(search_params)
-      scope = policy_scope(Task)
+      scope = policy_scope(Task.incompleted)
       @tasks = @search.perform(scope, params[:page], limit: 25, csv: request.format == :csv)
+    end
+
+    def completed
+      @search = TaskSearchForm.new(search_params)
+      scope = policy_scope(Task.completed)
+      @tasks = @search.perform(scope, params[:page], limit: 25, csv: request.format == :csv)
+    end
+
+    def complete
+      @task = Task.find(params[:id])
+      authorize @task
+
+      @task.complete!
+
+      redirect_to request.referrer, notice: "Task completed"
+    rescue Pundit::NotAuthorizedError
+      redirect_to request.referrer, alert: "You are not authorized to complete this task"
     end
 
     private
@@ -19,14 +36,6 @@ module Annotators
           :sort_kind
         ).to_h
       )
-    end
-
-    def completed
-      @tasks = policy_scope(Task)
-    end
-
-    def complete
-      # TODO: implement with warnign one time completion
     end
   end
 end

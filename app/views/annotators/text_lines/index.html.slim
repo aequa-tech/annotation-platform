@@ -23,13 +23,13 @@
                   = t("views.text_line.annotations_count")
 
       // item
+      - text_line_partial = @task.completed? ? "line_text_div" : "line_text_link"
       - @text_lines.each do |text_line|
         .px-1.py-3
           .row.g-4.g-lg-5.align-items-center
             .col-9
               .d-flex.align-items-center
-                = link_to text_line.content,
-                  annotators_task_text_line_path(@task, text_line), class: "d-block w-100 lh-sm fs-6 link-normal text-truncate"
+                = render partial: "annotators/text_lines/#{text_line_partial}", locals: { text_line: text_line, task: @task }
             .col-3
               // text_line info
               .row.text-center
@@ -41,8 +41,8 @@
                     .position-relative.bg-warning-soft.py-1.smaller.rounded-sm
                       span.p-3 = t("views.text_line.not_annotated")
 
-                .col-6.py-2.border-end
-                  .small.link-muted.bg-transparent.p-0.m-0.border-0 = text_line.annotations.count
+                .col-6.py-2
+                  .small.link-muted.bg-transparent.p-0.m-0.border-0 = text_line.annotations.where(task: @task).count
 
       .d-flex-align-middle
         = paginate(@text_lines, views_prefix: "annotators")
