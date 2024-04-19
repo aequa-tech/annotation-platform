@@ -11,6 +11,8 @@ function CustomTagWidget(props) {
   const [tags, setTags] = useState([]);
   const [ isDropdownOpen, setIsDropdownOpen ] = useState(false);
   const [ loadState, setLoadState ] = useState('LOADED'); // LOADING, LOADED, FAILED
+  const [search, setSearch] = useState("");
+  const filteredTags = tags.filter(tag => tag.title.toLowerCase().includes(search.toLowerCase()));
 
   const selectedTags = props.annotation?.bodies.filter(body => body.purpose === 'tagging').map(body => body.value) || [];
 
@@ -90,12 +92,20 @@ function CustomTagWidget(props) {
       {isDropdownOpen &&
         <div className="r6o-semtags-dropdown-container">
           <div className="r6o-semtags-dropdown">
-            <div className="r6o-semtags-dropdown-top"></div>
+            <div className="r6o-semtags-dropdown-top">
+              <input
+                  type="text"
+                  placeholder="Search tags..."
+                  value={search}
+                  className="form-control me-2"
+                  onChange={e => setSearch(e.target.value)}
+                />
+            </div>
 
             <div className="r6o-semtags-dropdown-bottom">
               {loadState === 'LOADED' &&
                 <SuggestionsLoaded
-                  suggestions={tags}
+                  suggestions={filteredTags}
                   onSelectSuggestion={handleSelectChange} /> }
             </div>
           </div>
