@@ -2,8 +2,11 @@ nav.navbar.navbar-light
   .container-fluid
     ol.breadcrumb
       li.breadcrumb-item.active = klass_name.to_s.pluralize
-    - if controller.respond_to?(:new)
-      .ms-auto
+    .ms-auto
+      - if controller.respond_to?(:import)
+        = link_to t("infold.operation.import_csv"), [:import, klass_module, klass_name.to_s.pluralize.to_sym],
+          class: "btn btn-warning mx-3", data: { turbo_frame: "modal_main" }
+      - if controller.respond_to?(:new)
         = link_to t("infold.operation.new"), [:new, klass_module, klass_name],
           class: "btn btn-warning", data: { turbo_frame: "modal_main" }
 

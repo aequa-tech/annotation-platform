@@ -19,6 +19,7 @@ gem "infold", require: false
 gem "active_decorator"
 gem "devise"
 gem "devise-i18n"
+gem "devise_invitable"
 gem "enum_help"
 gem "haml-rails"
 gem "kaminari"

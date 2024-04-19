@@ -11,6 +11,13 @@ tr id="#{dom_id(resource)}"
   td
     = resource.editor&.fullname
   td
+    - if resource.invitation_accepted_at.present?
+      = t("infold.yes")
+    - elsif resource.invitation_sent_at.blank?
+      = t("infold.added_directly")
+    - else
+      = t("infold.no")
+  td
     = resource.created_at
   td.icon_cell
     = link_to edit_management_annotator_path(resource), class: "d-block", data: { turbo_frame: "modal_main" } do

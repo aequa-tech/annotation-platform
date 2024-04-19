@@ -7,6 +7,9 @@ en:
       show: Details
       update: Update
       delete: Delete
+      invite: Invite
+      import_csv: Import CSV
+      import_csv_desc: "Import CSV file. The first row should be the header composed by email, fullname. separator is comma."
       submit: Submit
       cancel: Cancel
       clear: Clear
@@ -22,6 +25,7 @@ en:
       destroyed: Successfully destroyed
       invalid: Cannot save record
       invalid_destroy: Cannot delete record
+      queued_invites: Invites were queued for sending
       build_completed: Build completed
       db_synced: DB sync is complete
     badge:
