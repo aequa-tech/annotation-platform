@@ -3,9 +3,11 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './components/App';
+import ConfirmationModal from './components/ConfirmationModal';
 
 export default function mount(components) {
   document.addEventListener("DOMContentLoaded", () => {
+
     const mountPoints = document.querySelectorAll("[data-react-component]");
     mountPoints.forEach((mountPoint) => {
       const { dataset } = mountPoint;
@@ -28,4 +30,4 @@ export default function mount(components) {
   });
 }
 
-mount({ App });
+mount({ App, ConfirmationModal });

@@ -20,9 +20,9 @@ module Annotators
 
       @task.complete!
 
-      redirect_to request.referrer, notice: "Task completed"
-    rescue Pundit::NotAuthorizedError
-      redirect_to request.referrer, alert: "You are not authorized to complete this task"
+      render json: { status: :ok, redirect: request.referrer, notice: "Task completed" }
+    rescue Pundit::NotAuthorizedErrors
+      render json: { status: :forbidden, redirect: request.referrer, alert: "You are not authorized to complete this task" }
     end
 
     private
