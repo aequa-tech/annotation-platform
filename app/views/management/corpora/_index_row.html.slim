@@ -1,7 +1,8 @@
 tr id="#{dom_id(resource)}"
   td.icon_cell
-    = link_to management_corpus_path(resource), "aria-label": "Corpus info", class: "d-block", data: { turbo_frame: "modal_main" } do
-      i.bi.bi-file-text.h3
+    = link_to management_corpus_path(resource), "aria-label": "Corpus info", class: "d-block",
+      data: { turbo_frame: "modal_main" }, title: t("views.corpus.manage") do
+      i.bi.bi-gear.h3
   td = resource.id
   td = resource.title
   td = l(resource.created_at, format: :day_month_abbr)
