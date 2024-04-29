@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-devise_for :annotators, only: %i[passwords invitations]
+devise_for :annotators, only: %i[passwords invitations], controllers: { invitations: "annotators/invitations" }
 
 devise_scope :annotator do
   get "annotators/login", to: "annotators/sessions#new", as: :new_annotator_session
@@ -13,10 +13,6 @@ namespace "annotators" do
     get "assigned", to: "tasks#assigned", as: :assigned
     get "completed", to: "tasks#completed", as: :completed
   end
-
-  # devise_scope :annotator do
-  #   root to: "sessions#new", as: :unauthenticated_root
-  # end
 
   resources :tasks, only: [:assigned] do
     member do
