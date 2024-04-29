@@ -1,6 +1,6 @@
 .page style="padding-top: 5rem"
   .container-tight
-    = simple_form_for(resource, as: resource_name, url: editor_password_path, html: { method: :put, class: "card card-md" }) do |f|
+    = simple_form_for(resource, as: resource_name, url: admin_user_password_path, html: { method: :put, class: "card card-md" }) do |f|
       = f.error_notification
 
       .card-body
