@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-devise_for :annotators, only: %i[passwords invitations], controllers: { invitations: "annotators/invitations" }
+devise_for :annotators, only: %i[passwords invitations],
+  controllers: { invitations: "annotators/invitations", passwords: "annotators/passwords" }
 
 devise_scope :annotator do
   get "annotators/login", to: "annotators/sessions#new", as: :new_annotator_session
