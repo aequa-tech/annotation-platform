@@ -10,9 +10,7 @@
       | This is a platform for annotators and editors to collaborate on the annotation of texts.
       br
       | If you are an editor, you can log in to create annotation tasks. If you are an annotator, you can log in to complete annotation tasks.
-    p
-      = "If you don't have an account, fill in the"
-      =< link_to "request form", root_path
+
   .text-center.p-3
     p
       = "If you do have an account, use one of the links below to log in."
@@ -31,3 +29,6 @@
             h2 I am an Annotator
             .card-text = link_to "Login as annotator", new_annotator_session_path
       .col-2
+  p.text-center.p-3.h4
+    = "If you don't have an account, fill in the"
+    =< link_to "request form", root_path
