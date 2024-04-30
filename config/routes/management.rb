@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-devise_for :editors, only: :passwords,
-  controllers: { passwords: "management/editors/passwords" },
+devise_for :editors, only: %i[passwords invitations],
+  controllers: { passwords: "management/editors/passwords", invitations: "management/editors/invitations" },
   path: "management/editors",
   class_name: "Editor"
 

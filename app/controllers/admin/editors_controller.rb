@@ -18,13 +18,16 @@ module Admin
     def create
       @editor = Editor.new
       @editor.assign_attributes(post_params)
-      if @editor.save
+      if @editor.invite!
         flash.now[:notice] = t("infold.flash.created")
         render :form
       else
         flash.now[:alert] = t("infold.flash.invalid")
         render :form, status: :unprocessable_entity
       end
+    rescue ActiveRecord::RecordNotUnique
+      flash.now[:alert] = t("infold.flash.invalid")
+      render :form, status: :unprocessable_entity
     end
 
     def edit

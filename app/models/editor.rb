@@ -1,5 +1,5 @@
 class Editor < ApplicationRecord
-  devise :database_authenticatable,
+  devise :invitable, :database_authenticatable,
     :recoverable, :rememberable, :validatable
 
   has_many :corpora, dependent: :destroy
