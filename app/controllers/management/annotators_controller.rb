@@ -15,6 +15,9 @@ module Management
         flash.now[:alert] = t("infold.flash.invalid")
         render :form, status: :unprocessable_entity
       end
+    rescue ActiveRecord::RecordNotUnique
+      flash.now[:alert] = t("infold.flash.invalid")
+      render :form, status: :unprocessable_entity
     end
 
     def import
