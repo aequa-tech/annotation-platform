@@ -1,7 +1,7 @@
 !!!
 %html{lang: "en"}
   %head
-    %title= @page_title.present? ? "#{@page_title} - infold Admin" : 'infold Admin'
+    %title= @page_title.present? ? "#{@page_title} - Admin portal" : 'Annotations Admin'
     %meta{:content => "en", "http-equiv" => "content-language"}/
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
@@ -20,7 +20,7 @@
       - if admin_user_signed_in?
         %header.navbar.navbar-expand-md.navbar-dark
           .container-fluid
-            %a.navbar-brand.pe-0.pe-md-3{ href: '/admin' } Infold Admin
+            %a.navbar-brand.pe-0.pe-md-3{ href: '/admin' } Admin Portal
             %button.navbar-toggler{"data-bs-target" => "#navbar-menu", "data-bs-toggle" => "collapse", :type => "button"}
               %span.navbar-toggler-icon
             #navbar-menu.collapse.navbar-collapse
