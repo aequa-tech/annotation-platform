@@ -33,9 +33,6 @@
                     = current_admin_user.email
                   %ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow{ 'aria-labelledby' => 'header_current_user' }
                     %li
-                      = link_to 'Edit account', edit_admin_user_registration_path, class: 'dropdown-item'
-                    %li.dropdown-divider
-                    %li
                       = button_to 'Logout', destroy_admin_user_session_path, class: 'dropdown-item', method: :delete
       = yield
       = turbo_frame_tag "modal_main", target: "_top"

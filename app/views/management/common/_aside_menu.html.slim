@@ -31,6 +31,5 @@ aside.management-editor.navbar.navbar-vertical.navbar-expand-sm.navbar-dark.bg-d
               strong.px-2 = current_editor.email
 
             ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow{ aria-labelledby="header_current_user" }
-              li = link_to "Edit account", edit_editor_registration_path, class: "dropdown-item text-white"
               li = button_to "Logout", destroy_editor_session_path, class: "dropdown-item text-white", method: :delete
             .dropdown-divider
