@@ -13,10 +13,10 @@ html lang="en"
     #wrapper
       - if current_annotator.present? && %w[sessions passwords registrations confirmations unlocks home].exclude?(controller_name)
         = render partial: "shared/annotators/header"
-        .container
-          - flash.each do |type, msg|
-            - klasses = (type == "notice") ? "alert alert-success" : "alert alert-danger"
-            div class="#{klasses} alert-dismissible fade show" role="alert"
-              span = msg
+      .container
+        - flash.each do |type, msg|
+          - klasses = (type == "notice") ? "alert alert-success" : "alert alert-danger"
+          div class="#{klasses} alert-dismissible fade show" role="alert"
+            span = msg
       .bg-lime = yield
       = render partial: "shared/annotators/footer"
